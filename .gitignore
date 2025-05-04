@@ -1,0 +1,10 @@
+*
+!.gitignore
+!/src/
+!/.env.prod.example
+!/cep.config.ts
+!/package.json
+!/tsconfig.json
+!/tsconfig-build.json
+!/vite.config.ts
+!/vite.es.config.ts
