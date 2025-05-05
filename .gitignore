@@ -6,6 +6,7 @@
 !/cep.config.ts
 !/package.json
 !/package-lock.json
+!/readme.md
 !/tsconfig.json
 !/tsconfig-build.json
 !/vite.config.ts
