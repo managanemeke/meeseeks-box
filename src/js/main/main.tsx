@@ -1,7 +1,21 @@
+import {evalES} from "../lib/utils/bolt";
+
+/**
+ * {@link src/jsx/aeft/test.ts}
+ */
+const test = async (): Promise<void> => {await evalES("test()")};
+
 const Main = () => {
   return (
     <div>
-      <h1 style={{ color: "#ff5b3b" }}>Welcome to Bolt CEP!</h1>
+      <button
+        onClick={async (event) => {
+          await test();
+          event.currentTarget.innerText = "ready";
+        }}
+      >
+        test
+      </button>
     </div>
   );
 };

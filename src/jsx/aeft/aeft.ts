@@ -1,1 +1,1 @@
-export const example = () => {};
+export {test} from "./test";
