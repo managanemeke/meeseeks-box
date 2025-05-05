@@ -1,5 +1,6 @@
 *
 !.gitignore
+!/scripts/
 !/src/
 !/.env.prod.example
 !/cep.config.ts
