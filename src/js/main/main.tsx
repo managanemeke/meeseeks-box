@@ -1,24 +1,9 @@
-import {evalES} from "../lib/utils/bolt";
-
-/**
- * {@link src/jsx/aeft/test.ts}
- */
-const test = async (): Promise<void> => {await evalES("test()")};
-
-/**
- * {@link src/jsx/aeft/placeSaveMarkers.ts}
- */
-const placeSaveMarkers = async (): Promise<void> => {await evalES("placeSaveMarkers()")};
-
-/**
- * {@link src/jsx/aeft/saveSubstrates.ts}
- */
-const saveSubstrates = async (): Promise<void> => {await evalES("saveSubstrates()")};
-
-/**
- * {@link src/jsx/aeft/deleteSaveMarkers.ts}
- */
-const deleteSaveMarkers = async (): Promise<void> => {await evalES("deleteSaveMarkers()")};
+import {
+  test,
+  placeSaveMarkers,
+  saveSubstrates,
+  deleteSaveMarkers,
+} from "./shared/aeft";
 
 const Main = () => {
   return (
@@ -60,4 +45,5 @@ const Main = () => {
     </div>
   );
 };
+
 export default Main;
