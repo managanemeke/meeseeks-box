@@ -1,7 +1,8 @@
 import {
   test,
-  placeSaveMarkers,
+  notify,
   saveSubstrates,
+  placeSaveMarkers,
   deleteSaveMarkers,
 } from "./shared/aeft";
 
@@ -16,6 +17,7 @@ const Main = () => {
       <button
         onClick={async (event) => {
           await test();
+          await notify("test");
           event.currentTarget.innerText = "ready";
         }}
       >
