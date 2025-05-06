@@ -5,9 +5,19 @@ import {evalES} from "../lib/utils/bolt";
  */
 const test = async (): Promise<void> => {await evalES("test()")};
 
+/**
+ * {@link src/jsx/aeft/saveSubstrates.ts}
+ */
+const saveSubstrates = async (): Promise<void> => {await evalES("saveSubstrates()")};
+
 const Main = () => {
   return (
-    <div>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
       <button
         onClick={async (event) => {
           await test();
@@ -15,6 +25,13 @@ const Main = () => {
         }}
       >
         test
+      </button>
+      <button
+        onClick={async () => {
+          await saveSubstrates();
+        }}
+      >
+        saveSubstrates
       </button>
     </div>
   );
