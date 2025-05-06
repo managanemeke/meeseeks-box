@@ -15,6 +15,11 @@ const placeSaveMarkers = async (): Promise<void> => {await evalES("placeSaveMark
  */
 const saveSubstrates = async (): Promise<void> => {await evalES("saveSubstrates()")};
 
+/**
+ * {@link src/jsx/aeft/deleteSaveMarkers.ts}
+ */
+const deleteSaveMarkers = async (): Promise<void> => {await evalES("deleteSaveMarkers()")};
+
 const Main = () => {
   return (
     <div
@@ -44,6 +49,13 @@ const Main = () => {
         }}
       >
         saveSubstrates
+      </button>
+      <button
+        onClick={async () => {
+          await deleteSaveMarkers();
+        }}
+      >
+        deleteSaveMarkers
       </button>
     </div>
   );
