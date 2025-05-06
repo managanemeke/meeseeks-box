@@ -12,8 +12,8 @@ export const saveSubstrates = () => {
         createDirectoryIfNeeded(substratesDirectory);
         clearRenderQueue();
         const projectItems = app.project.items;
-        var savedAmount = 0;
-        for (var i = 1; i <= projectItems.length; i++) {
+        let savedAmount = 0;
+        for (let i = 1; i <= projectItems.length; i++) {
             const item = projectItems[i];
             if (
                 item instanceof CompItem
@@ -64,7 +64,7 @@ export const saveSubstrates = () => {
         const outputModule = queueItem.outputModule(1);
 
         const templates: Array<string> = [];
-        for (var i = 1; i <= outputModule.templates.length; i++) {
+        for (let i = 1; i <= outputModule.templates.length; i++) {
             templates.push(outputModule.templates[i]);
         }
         
@@ -118,7 +118,7 @@ export const saveSubstrates = () => {
         if (markers.numKeys === 0) {
             return;
         }
-        for (var i = 1; i <= markers.numKeys; i++) {
+        for (let i = 1; i <= markers.numKeys; i++) {
             if (markers.keyValue(i).comment === "save") {
                 comp!.time = markers.keyTime(i);
                 return;
@@ -143,7 +143,7 @@ export const saveSubstrates = () => {
         if (!comp) {
             return;
         }
-        var res: [number, number] = [1, 1];
+        let res: [number, number] = [1, 1];
         if (comp?.resolutionFactor.toString() != "1,1") {
             res = comp.resolutionFactor;
             comp.resolutionFactor = [1, 1];
