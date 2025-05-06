@@ -6,6 +6,11 @@ import {evalES} from "../lib/utils/bolt";
 const test = async (): Promise<void> => {await evalES("test()")};
 
 /**
+ * {@link src/jsx/aeft/placeSaveMarkers.ts}
+ */
+const placeSaveMarkers = async (): Promise<void> => {await evalES("placeSaveMarkers()")};
+
+/**
  * {@link src/jsx/aeft/saveSubstrates.ts}
  */
 const saveSubstrates = async (): Promise<void> => {await evalES("saveSubstrates()")};
@@ -25,6 +30,13 @@ const Main = () => {
         }}
       >
         test
+      </button>
+      <button
+        onClick={async () => {
+          await placeSaveMarkers();
+        }}
+      >
+        placeSaveMarkers
       </button>
       <button
         onClick={async () => {
