@@ -61,8 +61,6 @@ export const saveSubstrates = () => {
     function selectOutputModuleTemplate() {
         const tempComp: CompItem = app.project.items.addComp("temp", 1920, 1080, 1.0, 1.0, 30);
         const queueItem: RenderQueueItem = app.project.renderQueue.items.add(tempComp);
-        // @ts-ignore
-        // const outputModule = queueItem.outputModules.add();
         const outputModule = queueItem.outputModule(1);
 
         const templates: Array<string> = [];
@@ -90,9 +88,10 @@ export const saveSubstrates = () => {
         const buttonGroup = dialog.add("group");
         buttonGroup.alignment = "right";
         buttonGroup.add("button", undefined, "OK");
-        
+
         if (dialog.show() === 1) {
-            return templates[dropdown.selection];
+            // @ts-ignore
+            return templates[dropdown.selection.index];
         }
         
         return null;
