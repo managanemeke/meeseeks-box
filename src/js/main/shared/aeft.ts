@@ -19,3 +19,7 @@ export const saveSubstrates = async (): Promise<void> => {
 export const deleteSaveMarkers = async (): Promise<void> => {
   await evalES("deleteSaveMarkers()");
 };
+
+export const saveToCss = async (): Promise<void> => {
+  await evalES("saveToCss()");
+};

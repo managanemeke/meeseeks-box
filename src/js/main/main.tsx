@@ -1,6 +1,7 @@
 import {
   test,
   notify,
+  saveToCss,
   saveSubstrates,
   placeSaveMarkers,
   deleteSaveMarkers,
@@ -43,6 +44,13 @@ const Main = () => {
         }}
       >
         deleteSaveMarkers
+      </button>
+      <button
+        onClick={async () => {
+          await saveToCss();
+        }}
+      >
+        saveToCss
       </button>
     </div>
   );
