@@ -1,3 +1,5 @@
+import {compositionName} from "./aeft-utils";
+
 export const saveToCss = () => {
     const projectItems = app.project.items;
 
@@ -25,10 +27,6 @@ export const saveToCss = () => {
     }
 
     saveUsCss(cssData);
-
-    function compositionName(comp: CompItem): string {
-        return comp.name.replace(/\s+/g, '-').toLowerCase();
-    }
 
     function saveLayerAsCss(comp: CompItem, layer: AVLayer) {
         const layerName = layer.name.replace(/\s+/g, '-').toLowerCase();

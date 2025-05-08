@@ -1,3 +1,5 @@
+import {compositionName} from "./aeft-utils";
+
 export const saveSubstrates = () => {
     const saveFolder = "comps";
     const defaultSaveDirectory = Folder.desktop;
@@ -136,10 +138,6 @@ export const saveSubstrates = () => {
             outputFolder.create();
         }
         return new File(outputFolder.fsName + "/" + name);
-    }
-
-    function compositionName(comp: CompItem): string {
-        return comp.name.replace(/\s+/g, '-').toLowerCase();
     }
 
     function addActiveFrameToQueueAsPng() {
