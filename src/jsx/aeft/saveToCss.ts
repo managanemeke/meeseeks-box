@@ -26,6 +26,10 @@ export const saveToCss = () => {
 
     saveUsCss(cssData);
 
+    function compositionName(comp: CompItem): string {
+        return comp.name.replace(/\s+/g, '-').toLowerCase();
+    }
+
     function saveLayerAsCss(comp: CompItem, layer: AVLayer) {
         const layerName = layer.name.replace(/\s+/g, '-').toLowerCase();
         const scale = layer.transform.scale.value;
@@ -41,7 +45,7 @@ export const saveToCss = () => {
         topMargin = Math.round(topMargin);
         leftMargin = Math.round(leftMargin);
 
-        const compName = comp.name.replace(/\s+/g, '-').toLowerCase();
+        const compName = compositionName(comp);
 
         return "." + compName + " " + "." + layerName + " {\n" +
           "  position: absolute;\n" +

@@ -138,6 +138,10 @@ export const saveSubstrates = () => {
         return new File(outputFolder.fsName + "/" + name);
     }
 
+    function compositionName(comp: CompItem): string {
+        return comp.name.replace(/\s+/g, '-').toLowerCase();
+    }
+
     function addActiveFrameToQueueAsPng() {
         const comp = activeComp();
         if (!comp) {
@@ -148,7 +152,7 @@ export const saveSubstrates = () => {
             res = comp.resolutionFactor;
             comp.resolutionFactor = [1, 1];
         }
-        const file = substratesDirectoryFile(comp.name.replace(/\s+/g, '-').toLowerCase() + ".png");
+        const file = substratesDirectoryFile(compositionName(comp) + ".png");
         if (file.exists) {
             file.remove();
         }
