@@ -32,14 +32,15 @@ export const saveToCss = () => {
         const layerName = layer.name.replace(/\s+/g, '-').toLowerCase();
         const scale = layer.transform.scale.value;
         const position = layer.transform.position.value;
+        const anchor = layer.transform.anchorPoint.value;
 
         let width = layer.sourceRectAtTime(comp.time, false).width * scale[0] / 100;
         let height = layer.sourceRectAtTime(comp.time, false).height * scale[1] / 100;
         width = Math.round(width);
         height = Math.round(height);
 
-        let topMargin = position[1] - (height / 2);
-        let leftMargin = position[0] - (width / 2);
+        let topMargin = position[1] - (height / 2) - (anchor[1] * scale[1] / 100 - anchor[1]);
+        let leftMargin = position[0] - (width / 2) - (anchor[0] * scale[0] / 100 - anchor[0]);
         topMargin = Math.round(topMargin);
         leftMargin = Math.round(leftMargin);
 
