@@ -47,7 +47,7 @@ export const getProjectDir = () => {
 };
 
 export const getActiveComp = () => {
-  if (app.project.activeItem instanceof CompItem === false) {
+  if (!(app.project.activeItem instanceof CompItem)) {
     app.activeViewer?.setActive();
   }
   return app.project.activeItem as CompItem;
