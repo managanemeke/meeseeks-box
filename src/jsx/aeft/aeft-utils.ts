@@ -1,3 +1,5 @@
+export {notify} from "./notify";
+
 export const compositionName = (comp: CompItem): string => {
   return comp.name.replace(/\s+/g, '-').toLowerCase();
 }
