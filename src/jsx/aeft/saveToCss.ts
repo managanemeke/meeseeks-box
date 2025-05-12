@@ -34,8 +34,8 @@ export const saveToCss = () => {
         const position = layer.transform.position.value;
         const anchor = layer.transform.anchorPoint.value;
 
-        let width = layer.sourceRectAtTime(comp.time, false).width * scale[0] / 100;
-        let height = layer.sourceRectAtTime(comp.time, false).height * scale[1] / 100;
+        let width = layer.sourceRectAtTime(comp.time, true).width * scale[0] / 100;
+        let height = layer.sourceRectAtTime(comp.time, true).height * scale[1] / 100;
         width = Math.round(width);
         height = Math.round(height);
 
