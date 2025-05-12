@@ -50,7 +50,6 @@ export const saveToCss = () => {
         const compName = compositionName(comp);
 
         return "." + compName + " " + "." + layerName + " {\n" +
-          "  position: absolute;\n" +
           "  top: " + topMargin + "px;\n" +
           "  left: " + leftMargin + "px;\n" +
           "  width: " + width + "px;\n" +
