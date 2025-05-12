@@ -1,4 +1,4 @@
-import {compositionName} from "./aeft-utils";
+import {compositionName, notify} from "./aeft-utils";
 
 export const saveToCss = () => {
     const projectItems = app.project.items;
@@ -7,6 +7,12 @@ export const saveToCss = () => {
         alert("Project has not been saved!");
         return;
     }
+
+    interface TransformConfig {
+        position: [number, number],
+        scale: [number, number],
+        anchorPoint: [number, number],
+    };
 
     const rootDirectory = app.project.file.parent;
     const stylesDirectory = rootDirectory.fsName + "/" + "styles";
@@ -30,31 +36,46 @@ export const saveToCss = () => {
 
     function saveLayerAsCss(comp: CompItem, layer: AVLayer) {
         const layerName = layer.name.replace(/\s+/g, '-').toLowerCase();
-        const scale = layer.transform.scale.value;
-        const position = layer.transform.position.value;
-        const anchor = layer.transform.anchorPoint.value;
-
-        let width = layer.sourceRectAtTime(comp.time, true).width * scale[0] / 100;
-        let height = layer.sourceRectAtTime(comp.time, true).height * scale[1] / 100;
-        width = Math.round(width);
-        height = Math.round(height);
-
-        let anchorWidth = Math.round(anchor[0] * scale[0] / 100);
-        let anchorHeight = Math.round(anchor[1] * scale[1] / 100);
-
-        let topMargin = position[1] - anchorHeight;
-        let leftMargin = position[0] - anchorWidth;
-        topMargin = Math.round(topMargin);
-        leftMargin = Math.round(leftMargin);
-
         const compName = compositionName(comp);
 
-        return "." + compName + " " + "." + layerName + " {\n" +
-          "  top: " + topMargin + "px;\n" +
-          "  left: " + leftMargin + "px;\n" +
-          "  width: " + width + "px;\n" +
-          "  height: " + height + "px;\n" +
-          "}\n\n";
+        const bounds = getLayerBoundsInCompSpace(layer, comp.time);
+
+        return `.${compName} .${layerName} {\n` +
+          `  top: ${Math.round(bounds.top)}px;\n` +
+          `  left: ${Math.round(bounds.left)}px;\n` +
+          `  width: ${Math.round(bounds.width)}px;\n` +
+          `  height: ${Math.round(bounds.height)}px;\n` +
+          `}\n\n`;
+    }
+
+    function getLayerBoundsInCompSpace(layer: AVLayer, time: number) {
+        const rect = layer.sourceRectAtTime(time, true);
+        const corners = [
+            [rect.left, rect.top],
+            [rect.left + rect.width, rect.top],
+            [rect.left + rect.width, rect.top + rect.height],
+            [rect.left, rect.top + rect.height],
+        ];
+
+        let minX = Infinity, maxX = -Infinity;
+        let minY = Infinity, maxY = -Infinity;
+
+        for (let i = 0; i < corners.length; i++) {
+            const corner = corners[i] as [number, number];
+            const compPoint = layer.sourcePointToComp(corner);
+
+            minX = Math.min(minX, compPoint[0]);
+            maxX = Math.max(maxX, compPoint[0]);
+            minY = Math.min(minY, compPoint[1]);
+            maxY = Math.max(maxY, compPoint[1]);
+        }
+
+        return {
+            left: minX,
+            top: minY,
+            width: maxX - minX,
+            height: maxY - minY
+        };
     }
 
     function openStylesDirectory() {
