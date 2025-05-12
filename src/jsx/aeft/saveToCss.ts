@@ -39,8 +39,11 @@ export const saveToCss = () => {
         width = Math.round(width);
         height = Math.round(height);
 
-        let topMargin = position[1] - (height / 2) - (anchor[1] * scale[1] / 100 - anchor[1]);
-        let leftMargin = position[0] - (width / 2) - (anchor[0] * scale[0] / 100 - anchor[0]);
+        let anchorWidth = Math.round(anchor[0] * scale[0] / 100);
+        let anchorHeight = Math.round(anchor[1] * scale[1] / 100);
+
+        let topMargin = position[1] - anchorHeight;
+        let leftMargin = position[0] - anchorWidth;
         topMargin = Math.round(topMargin);
         leftMargin = Math.round(leftMargin);
 
