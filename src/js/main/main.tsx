@@ -5,6 +5,7 @@ import {
   saveSubstrates,
   placeSaveMarkers,
   deleteSaveMarkers,
+  printLayersOfActiveComp,
 } from "./shared/aeft";
 
 const Main = () => {
@@ -23,6 +24,13 @@ const Main = () => {
         }}
       >
         test
+      </button>
+      <button
+        onClick={async (event) => {
+          await printLayersOfActiveComp();
+        }}
+      >
+        printLayersOfActiveComp
       </button>
       <button
         onClick={async () => {

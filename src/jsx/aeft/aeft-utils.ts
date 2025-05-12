@@ -1,4 +1,10 @@
 export {notify} from "./notify";
+export {
+  AeftLayer,
+  AeftLayerType,
+  aeftLayerType,
+  aeftLayersFromComp,
+} from "./aeftLayersFromComp";
 
 export const compositionName = (comp: CompItem): string => {
   return comp.name.replace(/\s+/g, '-').toLowerCase();
