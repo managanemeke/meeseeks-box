@@ -37,44 +37,27 @@ export const saveToCss = () => {
     function saveLayerAsCss(comp: CompItem, layer: AVLayer) {
         const layerName = layer.name.replace(/\s+/g, '-').toLowerCase();
         const compName = compositionName(comp);
-
-        const bounds = getLayerBoundsInCompSpace(layer, comp.time);
+        const {top, left, width, height} = getLayerBounds(layer, comp.time);
 
         return `.${compName} .${layerName} {\n` +
-          `  top: ${Math.round(bounds.top)}px;\n` +
-          `  left: ${Math.round(bounds.left)}px;\n` +
-          `  width: ${Math.round(bounds.width)}px;\n` +
-          `  height: ${Math.round(bounds.height)}px;\n` +
+          `  top: ${Math.round(top)}px;\n` +
+          `  left: ${Math.round(left)}px;\n` +
+          `  width: ${Math.round(width)}px;\n` +
+          `  height: ${Math.round(height)}px;\n` +
           `}\n\n`;
     }
 
-    function getLayerBoundsInCompSpace(layer: AVLayer, time: number) {
+    function getLayerBounds(layer: AVLayer, time: number) {
         const rect = layer.sourceRectAtTime(time, true);
-        const corners = [
-            [rect.left, rect.top],
-            [rect.left + rect.width, rect.top],
-            [rect.left + rect.width, rect.top + rect.height],
-            [rect.left, rect.top + rect.height],
-        ];
 
-        let minX = Infinity, maxX = -Infinity;
-        let minY = Infinity, maxY = -Infinity;
-
-        for (let i = 0; i < corners.length; i++) {
-            const corner = corners[i] as [number, number];
-            const compPoint = layer.sourcePointToComp(corner);
-
-            minX = Math.min(minX, compPoint[0]);
-            maxX = Math.max(maxX, compPoint[0]);
-            minY = Math.min(minY, compPoint[1]);
-            maxY = Math.max(maxY, compPoint[1]);
-        }
+        const topLeft = layer.sourcePointToComp([rect.left, rect.top]);
+        const bottomRight = layer.sourcePointToComp([rect.left + rect.width, rect.top + rect.height]);
 
         return {
-            left: minX,
-            top: minY,
-            width: maxX - minX,
-            height: maxY - minY
+            left: topLeft[0],
+            top: topLeft[1],
+            width: bottomRight[0] - topLeft[0],
+            height: bottomRight[1] - topLeft[1]
         };
     }
 
