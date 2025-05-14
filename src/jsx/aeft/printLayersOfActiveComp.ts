@@ -6,5 +6,5 @@ import {
 
 export const printLayersOfActiveComp = () => {
   const comp = getActiveComp();
-  notify(JSON.stringify(aeftLayersFromComp(comp)));
+  notify(JSON.stringify(aeftLayersFromComp(comp), null, 2));
 };
