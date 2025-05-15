@@ -25,7 +25,8 @@ export const saveShrubs = () => {
                 const layer = comp.layer(j);
                 const type: AeftLayerType = aeftLayerType(layer);
                 if (
-                  isAVLayer(layer)
+                  layer.enabled
+                  && isAVLayer(layer)
                   && (
                       type === "Video"
                       || type === "Image"
