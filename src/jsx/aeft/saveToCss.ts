@@ -20,6 +20,7 @@ export const saveToCss = () => {
     for (let i = 1; i <= projectItems.length; i++) {
         const comp = projectItems[i];
         if (comp instanceof CompItem) {
+            cssData += saveCompositionAsCss(comp);
             for (let j = 1; j <= comp.numLayers; j++) {
                 const layer = comp.layer(j);
                 const type: AeftLayerType = aeftLayerType(layer);
@@ -41,6 +42,14 @@ export const saveToCss = () => {
         top: number,
         width: number,
         height: number,
+    }
+
+    function saveCompositionAsCss(comp: CompItem) {
+        const compName = compositionName(comp);
+        return `.${compName} {\n` +
+          `  width: ${comp.width}px;\n` +
+          `  height: ${comp.height}px;\n` +
+          `}\n\n`;
     }
 
     function saveLayerAsCss(comp: CompItem, layer: AVLayer) {
