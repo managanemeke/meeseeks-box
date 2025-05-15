@@ -41,7 +41,14 @@ export const saveShrubs = () => {
         }
     }
 
-    interface AbsoluteBlock {
+    interface AeftLayer {
+        composition: string,
+        layer: string,
+        type: AeftLayerType,
+        area: AeftLayerArea,
+    }
+
+    interface AeftLayerArea {
         left: number,
         top: number,
         width: number,
@@ -56,11 +63,10 @@ export const saveShrubs = () => {
           `}\n\n`;
     }
 
-    function saveLayerAsCss(comp: CompItem, layer: AVLayer) {
-        const layerName = layer.name.replace(/\s+/g, '-').toLowerCase();
-        const compName = compositionName(comp);
-        const {top, left, width, height} = absoluteBlock(layer, comp.time);
-        return `.${compName} .${layerName} {\n` +
+    function aeftLayerAsCss(aeftLayer: AeftLayer): string {
+        const {composition, layer} = aeftLayer;
+        const {top, left, width, height} = aeftLayer.area;
+        return `.${composition} .${layer} {\n` +
           `  left: ${left}px;\n` +
           `  top: ${top}px;\n` +
           `  width: ${width}px;\n` +
@@ -68,7 +74,20 @@ export const saveShrubs = () => {
           `}\n\n`;
     }
 
-    function absoluteBlock(layer: AVLayer, time: number): AbsoluteBlock {
+    function aeftLayer(comp: CompItem, layer: AVLayer): AeftLayer {
+        return {
+            composition: compositionName(comp),
+            layer: layer.name,
+            type: aeftLayerType(layer),
+            area: aeftLayerArea(layer, comp.time),
+        };
+    }
+
+    function saveLayerAsCss(comp: CompItem, layer: AVLayer) {
+        return aeftLayerAsCss(aeftLayer(comp, layer));
+    }
+
+    function aeftLayerArea(layer: AVLayer, time: number): AeftLayerArea {
         const rect = layer.sourceRectAtTime(time, true);
         const topLeft = layer.sourcePointToComp([rect.left, rect.top]);
         const bottomRight = layer.sourcePointToComp([rect.left + rect.width, rect.top + rect.height]);
