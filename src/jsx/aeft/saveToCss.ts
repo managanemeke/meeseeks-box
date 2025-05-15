@@ -57,8 +57,8 @@ export const saveToCss = () => {
         const compName = compositionName(comp);
         const {top, left, width, height} = absoluteBlock(layer, comp.time);
         return `.${compName} .${layerName} {\n` +
-          `  top: ${top}px;\n` +
           `  left: ${left}px;\n` +
+          `  top: ${top}px;\n` +
           `  width: ${width}px;\n` +
           `  height: ${height}px;\n` +
           `}\n\n`;
