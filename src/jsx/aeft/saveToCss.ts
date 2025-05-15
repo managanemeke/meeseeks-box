@@ -13,14 +13,13 @@ export const saveToCss = () => {
     }
 
     const rootDirectory = app.project.file.parent;
-    const stylesDirectory = rootDirectory.fsName + "/" + "styles";
-
-    let cssData = "";
+    const shrubsDirectory = rootDirectory.fsName + "/" + "shrubs";
 
     for (let i = 1; i <= projectItems.length; i++) {
         const comp = projectItems[i];
         if (comp instanceof CompItem) {
-            cssData += saveCompositionAsCss(comp);
+            let shrubCss = "";
+            shrubCss += saveCompositionAsCss(comp);
             for (let j = 1; j <= comp.numLayers; j++) {
                 const layer = comp.layer(j);
                 const type: AeftLayerType = aeftLayerType(layer);
@@ -29,13 +28,13 @@ export const saveToCss = () => {
                   || type === "Image"
                   || type === "Text"
                 ) {
-                    cssData += saveLayerAsCss(comp, layer as AVLayer);
+                    shrubCss += saveLayerAsCss(comp, layer as AVLayer);
                 }
             }
+            const compName = compositionName(comp);
+            saveShrubCss(compName, shrubCss);
         }
     }
-
-    saveUsCss(cssData);
 
     interface AbsoluteBlock {
         left: number,
@@ -77,20 +76,31 @@ export const saveToCss = () => {
     }
 
     function openStylesDirectory() {
-        new Folder(stylesDirectory).execute();
+        new Folder(shrubsDirectory).execute();
     }
 
-    function saveUsCss(cssData: string) {
-        if (cssData) {
-            const outputFolder = new Folder(stylesDirectory);
-            if (!outputFolder.exists) {
-                outputFolder.create();
+    function createFolder(path: string): Folder {
+        const outputFolder = new Folder(path);
+        if (!outputFolder.exists) {
+            outputFolder.create();
+        }
+        return outputFolder;
+    }
+
+    function createFile(path: string, name: string, content: string): File {
+        const folder = createFolder(path);
+        const file = new File(folder.fsName + "/" + name);
+        file.open("w");
+        file.write(content);
+        file.close();
+        return file;
+    }
+
+    function saveShrubCss(shrub: string, css: string) {
+        if (css) {
+            if (createFile(shrubsDirectory + "/" + shrub, "index.css", css)) {
+                openStylesDirectory();
             }
-            const file = new File(outputFolder.fsName + "/" + "us.css");
-            file.open("w");
-            file.write(cssData);
-            file.close();
-            openStylesDirectory();
         } else {
             alert("Empty!");
         }
