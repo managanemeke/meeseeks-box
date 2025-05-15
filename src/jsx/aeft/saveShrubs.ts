@@ -1,4 +1,5 @@
 import {
+    isAVLayer,
     AeftLayerType,
     aeftLayerType,
     compositionName,
@@ -24,9 +25,12 @@ export const saveShrubs = () => {
                 const layer = comp.layer(j);
                 const type: AeftLayerType = aeftLayerType(layer);
                 if (
-                  type === "Video"
-                  || type === "Image"
-                  || type === "Text"
+                  isAVLayer(layer)
+                  && (
+                      type === "Video"
+                      || type === "Image"
+                      || type === "Text"
+                  )
                 ) {
                     shrubCss += saveLayerAsCss(comp, layer as AVLayer);
                 }

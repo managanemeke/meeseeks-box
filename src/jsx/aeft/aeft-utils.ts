@@ -1,6 +1,7 @@
 export {notify} from "./notify";
 export {
   AeftLayer,
+  isAVLayer,
   AeftLayerType,
   aeftLayerType,
   aeftLayersFromComp,

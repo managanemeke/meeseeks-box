@@ -80,7 +80,7 @@ export const aeftLayerType = (layer: Layer): AeftLayerType => {
   return "Unknown";
 }
 
-const isAVLayer = (layer: Layer): boolean => {
+export const isAVLayer = (layer: Layer): boolean => {
   const nonAVTypes: Array<string> = [
     "ADBE Camera Layer",
     "ADBE Light Layer",
