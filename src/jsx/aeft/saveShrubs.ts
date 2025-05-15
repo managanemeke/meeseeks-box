@@ -4,7 +4,7 @@ import {
     compositionName,
 } from "./aeft-utils";
 
-export const saveToCss = () => {
+export const saveShrubs = () => {
     const projectItems = app.project.items;
 
     if (!app?.project?.file?.parent) {

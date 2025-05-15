@@ -1,7 +1,7 @@
 import {
   test,
   notify,
-  saveToCss,
+  saveShrubs,
   saveSubstrates,
   placeSaveMarkers,
   deleteSaveMarkers,
@@ -55,10 +55,10 @@ const Main = () => {
       </button>
       <button
         onClick={async () => {
-          await saveToCss();
+          await saveShrubs();
         }}
       >
-        saveToCss
+        saveShrubs
       </button>
     </div>
   );

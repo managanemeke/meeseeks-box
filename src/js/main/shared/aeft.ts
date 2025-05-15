@@ -24,6 +24,6 @@ export const deleteSaveMarkers = async (): Promise<void> => {
   await evalES("deleteSaveMarkers()");
 };
 
-export const saveToCss = async (): Promise<void> => {
-  await evalES("saveToCss()");
+export const saveShrubs = async (): Promise<void> => {
+  await evalES("saveShrubs()");
 };
