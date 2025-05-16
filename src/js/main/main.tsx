@@ -1,3 +1,5 @@
+import { Button } from '@swc-react/button';
+
 import {
   test,
   notify,
@@ -60,6 +62,12 @@ const Main = () => {
       >
         saveShrubs
       </button>
+      <Button
+        variant={"primary"}
+        onClick={() => alert('Button clicked!')}
+      >
+        Click me
+      </Button>
     </div>
   );
 };
