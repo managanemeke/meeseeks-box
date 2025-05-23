@@ -135,3 +135,94 @@ export const getLabelNames = (): Record<number, string> => {
     return [];
   }
 };
+
+function normalizeColor(rawColor: string) {
+  var result = '';
+  var insideQuotes = false;
+  var quotedChars = '';
+  var charCode, hexPart;
+
+  for (var i = 0; i < rawColor.length; i++) {
+    var char = rawColor.charAt(i);
+
+    if (char === '"') {
+      insideQuotes = !insideQuotes;
+      if (!insideQuotes && quotedChars) {
+        for (var j = 0; j < quotedChars.length; j++) {
+          charCode = quotedChars.charCodeAt(j);
+          hexPart = charCode.toString(16);
+          if (hexPart.length < 2) {
+            hexPart = '0' + hexPart;
+          }
+          result += hexPart.toUpperCase();
+        }
+        quotedChars = '';
+      }
+      continue;
+    }
+
+    if (insideQuotes) {
+      quotedChars += char;
+    } else {
+      if (/[0-9A-Fa-f]/.test(char)) {
+        result += char.toUpperCase();
+      }
+    }
+  }
+
+  if (quotedChars) {
+    for (var k = 0; k < quotedChars.length; k++) {
+      charCode = quotedChars.charCodeAt(k);
+      hexPart = charCode.toString(16);
+      if (hexPart.length < 2) {
+        hexPart = '0' + hexPart;
+      }
+      result += hexPart.toUpperCase();
+    }
+  }
+
+  return result.substr(2, 6);
+}
+
+export const getLabelColors = (): Record<string, string> => {
+  try {
+    const prefsDir = getPrefsDir();
+    const prefsSuffix = "indep-general.txt";
+    const labelPrefsFile = getLatestFile(prefsDir, prefsSuffix);
+
+    if (!labelPrefsFile) return {};
+
+    const txt = fs.readFileSync(path.join(prefsDir, labelPrefsFile), {
+      encoding: "utf-8",
+    });
+
+    alert("txt");
+
+    const colorSectionStart = txt.indexOf('["Label Preference Color Section 5"]');
+    if (colorSectionStart === -1) return {};
+
+    const sectionContent = txt.slice(colorSectionStart);
+
+    const lines = sectionContent.match(/[^\r\n]+/g);
+    if (!lines) return {};
+
+    const colorNames: Record<number, string> = {};
+
+    const regex = /"Label Color ID 2 # (\d+)"\s*=\s*(.*)/;
+
+    lines.forEach(line => {
+      const match = line.match(regex);
+      if (match) {
+        const id = parseInt(match[1]);
+        colorNames[id] = normalizeColor(match[2]);
+      }
+    });
+
+    alert("section");
+
+    return colorNames;
+  } catch (error) {
+    console.warn("Error loading custom label colors:", error);
+    return {};
+  }
+};

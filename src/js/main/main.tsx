@@ -9,7 +9,10 @@ import {
   deleteSaveMarkers,
   printLayersOfActiveComp,
 } from "./shared/aeft";
-import {getLabelNames} from "../lib/utils/aeft";
+import {
+  getLabelNames,
+  getLabelColors,
+} from "../lib/utils/aeft";
 
 const Main = () => {
   return (
@@ -66,7 +69,12 @@ const Main = () => {
       <Button
         variant={"primary"}
         onClick={async () => {
-          alert(getLabelNames()[1]);
+          const names = getLabelNames();
+          const colors = getLabelColors();
+          for (let index = 1; index <= 1; index++) {
+            alert(names[index]);
+            alert(colors[index]);
+          }
         }}
       >
         Show first label
