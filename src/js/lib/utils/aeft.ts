@@ -1,5 +1,5 @@
-import { fs, path } from "../cep/node";
-import { csi } from "./bolt";
+import {fs, path} from "../cep/node";
+import {csi} from "./bolt";
 
 const getLatestFile = (dir: string, suffix: string): string | null => {
   const getModified = (filePath: string) =>
@@ -94,4 +94,44 @@ export const getRenderSettingsList = (): string[] => {
     }
   }
   return [];
+};
+
+export const getLabelNames = (): Record<number, string> => {
+  const prefsDir = getPrefsDir();
+  const prefsSuffix = "indep-general.txt";
+  const labelPrefsFile = getLatestFile(prefsDir, prefsSuffix);
+
+  if (!labelPrefsFile) return [];
+
+  try {
+    const txt = fs.readFileSync(path.join(prefsDir, labelPrefsFile), {
+      encoding: "utf-8",
+    });
+
+    const labelSectionStart = txt.indexOf('["Label Preference Text Section 7"]');
+    if (labelSectionStart === -1) return [];
+
+    const sectionContent = txt.slice(labelSectionStart);
+
+    const lines = sectionContent.match(/[^\r\n]+/g);
+    if (!lines) return [];
+
+    const labelNames: Record<number, string> = {};
+
+    const labelRegex = /"Label Text ID 2 # (\d+)"\s*=\s*"([^"]+)"/;
+
+    lines.forEach(line => {
+      const match = line.match(labelRegex);
+      if (match) {
+        const id = parseInt(match[1]);
+        labelNames[id] = match[2];
+      }
+    });
+
+    return labelNames;
+
+  } catch (error) {
+    console.error("Error reading label names:", error);
+    return [];
+  }
 };

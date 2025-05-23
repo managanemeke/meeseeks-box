@@ -9,6 +9,7 @@ import {
   deleteSaveMarkers,
   printLayersOfActiveComp,
 } from "./shared/aeft";
+import {getLabelNames} from "../lib/utils/aeft";
 
 const Main = () => {
   return (
@@ -64,9 +65,11 @@ const Main = () => {
       </button>
       <Button
         variant={"primary"}
-        onClick={() => alert('Button clicked!')}
+        onClick={async () => {
+          alert(getLabelNames()[1]);
+        }}
       >
-        Click me
+        Show first label
       </Button>
     </div>
   );
