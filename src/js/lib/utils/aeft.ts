@@ -196,8 +196,6 @@ export const getLabelColors = (): Record<string, string> => {
       encoding: "utf-8",
     });
 
-    alert("txt");
-
     const colorSectionStart = txt.indexOf('["Label Preference Color Section 5"]');
     if (colorSectionStart === -1) return {};
 
@@ -217,8 +215,6 @@ export const getLabelColors = (): Record<string, string> => {
         colorNames[id] = normalizeColor(match[2]);
       }
     });
-
-    alert("section");
 
     return colorNames;
   } catch (error) {
