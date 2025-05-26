@@ -13,8 +13,12 @@ import {
   getLabelNames,
   getLabelColors,
 } from "../lib/utils/aeft";
+import {ColorField} from "@swc-react/color-field";
+import {ColorHandle} from "@swc-react/color-handle";
 
 const Main = () => {
+  const names = getLabelNames();
+  const colors = getLabelColors();
   return (
     <div
       style={{
@@ -69,8 +73,6 @@ const Main = () => {
       <Button
         variant={"primary"}
         onClick={async () => {
-          const names = getLabelNames();
-          const colors = getLabelColors();
           for (let index = 1; index <= 1; index++) {
             alert(names[index]);
             alert(colors[index]);
@@ -79,6 +81,12 @@ const Main = () => {
       >
         Show first label
       </Button>
+      <ColorField
+        viewColor={true}
+        value={"#" + colors[1]}
+      >
+        <ColorHandle></ColorHandle>
+      </ColorField>
     </div>
   );
 };
