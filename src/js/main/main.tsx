@@ -1,4 +1,4 @@
-import { Button } from '@swc-react/button';
+import {Button, ColorField, ColorSwatch} from '@adobe/react-spectrum';
 
 import {
   test,
@@ -13,8 +13,7 @@ import {
   getLabelNames,
   getLabelColors,
 } from "../lib/utils/aeft";
-import {ColorField} from "@swc-react/color-field";
-import {ColorHandle} from "@swc-react/color-handle";
+import {ColorPicker} from "./components";
 
 const Main = () => {
   const names = getLabelNames();
@@ -72,7 +71,7 @@ const Main = () => {
       </button>
       <Button
         variant={"primary"}
-        onClick={async () => {
+        onPress={async () => {
           for (let index = 1; index <= 1; index++) {
             alert(names[index]);
             alert(colors[index]);
@@ -82,11 +81,12 @@ const Main = () => {
         Show first label
       </Button>
       <ColorField
-        viewColor={true}
         value={"#" + colors[1]}
-      >
-        <ColorHandle></ColorHandle>
-      </ColorField>
+      />
+      <ColorSwatch
+        color={"#" + colors[1]}
+      />
+      <ColorPicker />
     </div>
   );
 };

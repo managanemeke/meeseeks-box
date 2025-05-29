@@ -1,20 +1,22 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { initBolt } from "../lib/utils/bolt";
-import "@spectrum-web-components/theme/theme-dark.js";
-import '@spectrum-web-components/theme/express/theme-dark.js';
-import "@spectrum-web-components/theme/scale-medium.js";
-import '@spectrum-web-components/theme/express/scale-medium.js';
-import { Theme } from "@swc-react/theme";
+import { darkTheme, Provider } from '@adobe/react-spectrum';
 
 import Main from "./main";
 
 initBolt();
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+const root = document.getElementById("root") as HTMLElement;
+
+ReactDOM.createRoot(root).render(
   <React.StrictMode>
-    <Theme system="spectrum" scale="medium" color="dark">
+    <Provider theme={darkTheme}>
       <Main />
-    </Theme>
+    </Provider>
   </React.StrictMode>
 );
+
+root.addEventListener("click", function (event) {
+  event.preventDefault();
+});
