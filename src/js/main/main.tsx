@@ -13,11 +13,18 @@ import {
   getLabelNames,
   getLabelColors,
 } from "../lib/utils/aeft";
-import {ColorPicker, MainTabs} from "./components";
+import {ColorOption, ColorPicker, MainTabs} from "./components";
 
 const Main = () => {
   const names = getLabelNames();
   const colors = getLabelColors();
+  const colorOptions: Record<number, ColorOption> = {
+    1: {label: 'Черный', value: 'black', color: '#000000'},
+    2: {label: 'Белый', value: 'white', color: '#ffffff'},
+    3: {label: 'Красный', value: 'red', color: '#ff0000'},
+    4: {label: 'Зеленый', value: 'green', color: '#00ff00'},
+    5: {label: 'Синий', value: 'blue', color: '#0000ff'},
+  };
   return (
     <div
       style={{
@@ -88,7 +95,9 @@ const Main = () => {
       <ColorSwatch
         color={"#" + colors[1]}
       />
-      <ColorPicker />
+      <ColorPicker
+        options={colorOptions}
+      />
     </div>
   );
 };

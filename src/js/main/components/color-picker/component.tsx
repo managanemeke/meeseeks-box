@@ -2,21 +2,12 @@ import _ from "lodash";
 import React, {useState} from 'react';
 import {Picker, ColorSwatch, Item, Key} from '@adobe/react-spectrum';
 
-interface ColorOption {
-  label: string;
-  value: string;
-  color: string;
-}
+import Props from "./props";
+import {ColorOption} from "./types";
 
-const colorOptions: Record<number, ColorOption> = {
-  1: {label: 'Черный', value: 'black', color: '#000000'},
-  2: {label: 'Белый', value: 'white', color: '#ffffff'},
-  3: {label: 'Красный', value: 'red', color: '#ff0000'},
-  4: {label: 'Зеленый', value: 'green', color: '#00ff00'},
-  5: {label: 'Синий', value: 'blue', color: '#0000ff'},
-};
 
-const Component = () => {
+const Component = (props: Props) => {
+  const { options: colorOptions } = props;
   const [selectedColor, setSelectedColor] = useState<ColorOption>(colorOptions[1]);
 
   const handleSelectionChange = (key: Key | null) => {
