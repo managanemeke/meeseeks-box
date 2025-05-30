@@ -13,7 +13,7 @@ import {
   getLabelNames,
   getLabelColors,
 } from "../lib/utils/aeft";
-import {ColorPicker} from "./components";
+import {ColorPicker, MainTabs} from "./components";
 
 const Main = () => {
   const names = getLabelNames();
@@ -25,6 +25,7 @@ const Main = () => {
         flexDirection: "column",
       }}
     >
+      <MainTabs />
       <button
         onClick={async (event) => {
           await test();
@@ -72,6 +73,7 @@ const Main = () => {
       <Button
         variant={"primary"}
         onPress={async () => {
+          const labels = {};
           for (let index = 1; index <= 1; index++) {
             alert(names[index]);
             alert(colors[index]);
