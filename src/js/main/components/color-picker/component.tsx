@@ -25,17 +25,11 @@ const Component = () => {
 
   const items = () => {
     return _.map(colorOptions, (option: ColorOption) => (
-      <Item key={option.value} >
-        <div style={{
-          display: 'flex',
-          alignItems: 'center',
-          gap: '8px'
-        }}>
-          <ColorSwatch
-            color={option.color}
-          />
-          <span>{option.label}</span>
-        </div>
+      <Item key={option.value}>
+        <ColorSwatch
+          color={option.color}
+        />
+        <span>{option.label}</span>
       </Item>
     ));
   };
@@ -52,12 +46,6 @@ const Component = () => {
         label="Выберите цвет"
         onSelectionChange={handleSelectionChange}
       >
-        <Item key={"#00ff00"}>
-          <ColorSwatch
-            color={"#00ff00"}
-          />
-          <span>{"Lime"}</span>
-        </Item>
         <>{ items() }</>
       </Picker>
 
