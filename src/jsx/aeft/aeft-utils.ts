@@ -1,8 +1,10 @@
 export {notify} from "./notify";
-export {
+export type {
   AeftLayer,
-  isAVLayer,
   AeftLayerType,
+} from "./aeftLayersFromComp";
+export {
+  isAVLayer,
   aeftLayerType,
   aeftLayersFromComp,
 } from "./aeftLayersFromComp";
