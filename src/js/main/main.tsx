@@ -1,4 +1,4 @@
-import {Button, ColorField, ColorSwatch} from '@adobe/react-spectrum';
+import _, {padStart} from "lodash";
 
 import {
   test,
@@ -16,15 +16,20 @@ import {
 import {ColorOption, ColorPicker, MainTabs} from "./components";
 
 const Main = () => {
-  const names = getLabelNames();
-  const colors = getLabelColors();
-  const colorOptions: Record<number, ColorOption> = {
-    1: {label: 'Черный', value: 'black', color: '#000000'},
-    2: {label: 'Белый', value: 'white', color: '#ffffff'},
-    3: {label: 'Красный', value: 'red', color: '#ff0000'},
-    4: {label: 'Зеленый', value: 'green', color: '#00ff00'},
-    5: {label: 'Синий', value: 'blue', color: '#0000ff'},
+  const labels = (): Record<number, ColorOption> => {
+    const names = getLabelNames();
+    const colors = getLabelColors();
+    const options: Record<number, ColorOption> = {};
+    _.forEach(names, (value, key) => {
+      options[Number(key)] = {
+        color: "#" + colors[key],
+        label: padStart(key, 2, "0") + ": " + value,
+        value: key,
+      };
+    });
+    return options;
   };
+  const colorOptions = labels();
   return (
     <div
       style={{
@@ -77,24 +82,6 @@ const Main = () => {
       >
         saveShrubs
       </button>
-      <Button
-        variant={"primary"}
-        onPress={async () => {
-          const labels = {};
-          for (let index = 1; index <= 1; index++) {
-            alert(names[index]);
-            alert(colors[index]);
-          }
-        }}
-      >
-        Show first label
-      </Button>
-      <ColorField
-        value={"#" + colors[1]}
-      />
-      <ColorSwatch
-        color={"#" + colors[1]}
-      />
       <ColorPicker
         options={colorOptions}
       />
