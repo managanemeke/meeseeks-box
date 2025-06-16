@@ -13,7 +13,12 @@ import {
   getLabelNames,
   getLabelColors,
 } from "../lib/utils/aeft";
-import {ColorOption, ColorPicker, MainTabs} from "./components";
+import {
+  ColorOption,
+  ColorPicker,
+  MainTabs,
+} from "./components";
+import { CirclePicker } from "react-color";
 
 const Main = () => {
   const labels = (): Record<number, ColorOption> => {
@@ -22,13 +27,14 @@ const Main = () => {
     const options: Record<number, ColorOption> = {};
     _.forEach(names, (value, key) => {
       options[Number(key)] = {
-        color: "#" + colors[key],
+        color: colors[key],
         label: padStart(key, 2, "0") + ": " + value,
         value: key,
       };
     });
     return options;
   };
+  const colors = _.values(getLabelColors());
   const colorOptions = labels();
   return (
     <div
@@ -84,6 +90,12 @@ const Main = () => {
       </button>
       <ColorPicker
         options={colorOptions}
+      />
+      <CirclePicker
+        width={"350px"}
+        color={colors[0]}
+        colors={colors}
+        onChangeComplete={(color) => alert(color.hex)}
       />
     </div>
   );
