@@ -53,7 +53,7 @@ npm install
 Set cep directory path inside scripts/extract-zxp-locally.ps1
 
 ```powershell
-$cepDirectory = "C:\Program Files\Adobe\Adobe After Effects 2024\Support Files\Plug-ins\CEP"
+$cepDirectory = "C:\Program Files\Adobe\Adobe After Effects 2025\Support Files\Plug-ins\CEP"
 ```
 
 ### deploy locally

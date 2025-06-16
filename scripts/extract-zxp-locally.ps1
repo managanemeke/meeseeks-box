@@ -1,11 +1,16 @@
 Set-Location -Path ($PSScriptRoot)
 
-$cepDirectory = "C:\Program Files\Adobe\Adobe After Effects 2024\Support Files\Plug-ins\CEP"
+$cepDirectory = "C:\Program Files\Adobe\Adobe After Effects 2025\Support Files\Plug-ins\CEP"
 $appDomain = "com.meeseeks-box.cep"
 $sourceArchivePath = "..\dist\zxp"
 $sevenZip = "7z"
 
 $archiveName = "$appDomain.zxp"
+
+if (-not (Test-Path -Path $cepDirectory)) {
+    New-Item -ItemType Directory -Path $cepDirectory | Out-Null
+    Write-Output "CEP directory created: $cepDirectory"
+}
 
 $sourceArchive = Join-Path (Join-Path (Get-Location) $sourceArchivePath) $archiveName
 $destinationArchive = Join-Path $cepDirectory $archiveName
