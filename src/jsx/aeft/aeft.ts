@@ -4,4 +4,5 @@ export {saveShrubs} from "./saveShrubs";
 export {saveSubstrates} from "./saveSubstrates";
 export {placeSaveMarkers} from "./placeSaveMarkers";
 export {deleteSaveMarkers} from "./deleteSaveMarkers";
+export {renameCompositions} from "./renameCompositions";
 export {printLayersOfActiveComp} from "./printLayersOfActiveComp";

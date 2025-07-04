@@ -24,6 +24,10 @@ export const deleteSaveMarkers = async (): Promise<void> => {
   await evalES("deleteSaveMarkers()");
 };
 
+export const renameCompositions = async (): Promise<void> => {
+  await evalES("renameCompositions()");
+};
+
 export const saveShrubs = async (): Promise<void> => {
   await evalES("saveShrubs()");
 };

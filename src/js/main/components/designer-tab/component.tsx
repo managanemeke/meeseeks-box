@@ -2,6 +2,7 @@ import {
   deleteSaveMarkers,
   placeSaveMarkers,
   saveSubstrates,
+  renameCompositions,
 } from "../../shared/aeft";
 
 const Component = () => {
@@ -27,6 +28,13 @@ const Component = () => {
         }}
       >
         deleteSaveMarkers
+      </button>
+      <button
+        onClick={async () => {
+          await renameCompositions();
+        }}
+      >
+        renameCompositions
       </button>
     </>
   );
