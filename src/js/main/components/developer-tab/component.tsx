@@ -54,7 +54,7 @@ const Component = () => {
         options={colorOptions}
       />
       <CirclePicker
-        width={"350px"}
+        width={"180px"}
         color={colors[0]}
         colors={colors}
         onChangeComplete={(color) => alert(color.hex)}
