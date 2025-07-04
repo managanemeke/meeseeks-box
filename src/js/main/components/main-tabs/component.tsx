@@ -6,7 +6,7 @@ import {
   Item,
   TabPanels, Key,
 } from "@adobe/react-spectrum";
-import {DesignerTab} from "../index";
+import {DesignerTab, DeveloperTab} from "../index";
 
 const Component = () => {
   let tabs = [
@@ -18,7 +18,7 @@ const Component = () => {
     {
       id: 2,
       name: 'developer',
-      children: 'developer'
+      children: <DeveloperTab />
     },
   ];
   type Tab = typeof tabs[0];
