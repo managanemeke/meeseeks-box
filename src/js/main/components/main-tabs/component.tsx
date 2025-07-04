@@ -6,28 +6,26 @@ import {
   Item,
   TabPanels, Key,
 } from "@adobe/react-spectrum";
+import {DesignerTab} from "../index";
 
 const Component = () => {
   let tabs = [
     {
       id: 1,
-      name: 'Founding of Rome',
-      children: 'Arma virumque cano, Troiae qui primus ab oris.'
+      name: 'designer',
+      children: <DesignerTab />
     },
     {
       id: 2,
-      name: 'Monarchy and Republic',
-      children: 'Senatus Populusque Romanus.'
+      name: 'developer',
+      children: 'developer'
     },
-    { id: 3, name: 'Empire', children: 'Alea jacta est.' }
   ];
   type Tab = typeof tabs[0];
-  let [tabId, setTabId] = React.useState<Key>(1);
+  let [, setTabId] = React.useState<Key>(1);
   return (
     <>
-      <p>Current tab id: {tabId}</p>
       <Tabs
-        aria-label="History of Ancient Rome"
         items={tabs}
         onSelectionChange={setTabId}
       >

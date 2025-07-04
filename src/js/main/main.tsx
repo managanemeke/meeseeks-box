@@ -62,27 +62,6 @@ const Main = () => {
       </button>
       <button
         onClick={async () => {
-          await placeSaveMarkers();
-        }}
-      >
-        placeSaveMarkers
-      </button>
-      <button
-        onClick={async () => {
-          await saveSubstrates();
-        }}
-      >
-        saveSubstrates
-      </button>
-      <button
-        onClick={async () => {
-          await deleteSaveMarkers();
-        }}
-      >
-        deleteSaveMarkers
-      </button>
-      <button
-        onClick={async () => {
           await saveShrubs();
         }}
       >
