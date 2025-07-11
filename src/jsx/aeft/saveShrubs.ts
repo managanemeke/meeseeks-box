@@ -8,11 +8,13 @@ import {
 export const saveShrubs = () => {
     const projectItems = app.project.items;
 
+    /* @ts-ignore */
     if (!app?.project?.file?.parent) {
         alert("Project has not been saved!");
         return;
     }
 
+    /* @ts-ignore */
     const rootDirectory = app.project.file.parent;
     const shrubsDirectory = rootDirectory.fsName + "/" + "shrubs";
 
@@ -113,9 +115,13 @@ export const saveShrubs = () => {
 
     function createFile(path: string, name: string, content: string): File {
         const folder = createFolder(path);
+        /* @ts-ignore */
         const file = new File(folder.fsName + "/" + name);
+        /* @ts-ignore */
         file.open("w");
+        /* @ts-ignore */
         file.write(content);
+        /* @ts-ignore */
         file.close();
         return file;
     }

@@ -55,6 +55,7 @@ export const compFromFootage = (item: FootageItem): CompItem => {
 export const getProjectDir = () => {
   app.project.file;
   if (app.project.file !== null) {
+    /* @ts-ignore */
     return app.project.file.parent;
   } else {
     return "";

@@ -33,6 +33,7 @@ export const saveSubstrates = () => {
     }
 
     function detectRootDirectory() {
+        /* @ts-ignore */
         const projectDirectory = app?.project?.file?.parent;
         if (
           isProjectSaved()
@@ -78,8 +79,10 @@ export const saveSubstrates = () => {
             return "";
         }
 
+        /* @ts-ignore */
         const dialog = new Window("dialog", "Выберите Output Module Template");
 
+        /* @ts-ignore */
         const dropdownListGroup = dialog.add("group");
         dropdownListGroup.alignChildren = ["left", "center"];
         dropdownListGroup.add("statictext", undefined, "Шаблон:");
@@ -87,10 +90,12 @@ export const saveSubstrates = () => {
         const dropdown: DropDownList = dropdownListGroup.add("dropdownlist", undefined, templates);
         dropdown.selection = 0;
 
+        /* @ts-ignore */
         const buttonGroup = dialog.add("group");
         buttonGroup.alignment = "right";
         buttonGroup.add("button", undefined, "OK");
 
+        /* @ts-ignore */
         if (dialog.show() === 1) {
             // @ts-ignore
             return templates[dropdown.selection.index];
@@ -137,6 +142,7 @@ export const saveSubstrates = () => {
         if (!outputFolder.exists) {
             outputFolder.create();
         }
+        /* @ts-ignore */
         return new File(outputFolder.fsName + "/" + name);
     }
 
@@ -151,7 +157,9 @@ export const saveSubstrates = () => {
             comp.resolutionFactor = [1, 1];
         }
         const file = substratesDirectoryFile(compositionName(comp) + ".png");
+        /* @ts-ignore */
         if (file.exists) {
+            /* @ts-ignore */
             file.remove();
         }
         callSaveFrameAs();

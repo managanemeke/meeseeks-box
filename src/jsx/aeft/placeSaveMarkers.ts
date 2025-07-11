@@ -16,8 +16,10 @@ export const placeSaveMarkers = () => {
     }
 
     function promptForTimestamp() {
+        /* @ts-ignore */
         const dialog = new Window("dialog", "Расставить маркеры сохранения");
 
+        /* @ts-ignore */
         const timestampGroup = dialog.add("group");
         timestampGroup.alignChildren = ["left", "center"];
         timestampGroup.add("statictext", undefined, "Временная метка (ЧЧ:ММ:СС:КК):");
@@ -25,10 +27,12 @@ export const placeSaveMarkers = () => {
         const selectedTimestamp = timestampGroup.add("edittext", undefined, defaultTime);
         selectedTimestamp.characters = 11;
 
+        /* @ts-ignore */
         const buttonGroup = dialog.add("group");
         buttonGroup.alignment = "right";
         buttonGroup.add("button", undefined, "OK");
-        
+
+        /* @ts-ignore */
         if (dialog.show() === 1) {
             return selectedTimestamp.text;
         }

@@ -7,6 +7,7 @@ export const renameCompositions = () => {
     return;
   }
 
+  /* @ts-ignore */
   var csvFile = File.openDialog("Select CSV with name,width,height", "*.csv");
   if (!csvFile) {
     alert("No file selected.");
@@ -44,7 +45,7 @@ export const renameCompositions = () => {
     sizeToNames[key].push(name);
   }
 
-  var targetFolder = null;
+  var targetFolder: FolderItem | null = null;
   for (var f = 1; f <= proj.rootFolder.numItems; f++) {
     var folder = proj.rootFolder.item(f);
     if (folder instanceof FolderItem && folder.name.toLowerCase() === "comps") {
@@ -65,15 +66,22 @@ export const renameCompositions = () => {
   }
 
   function chooseNameDialog(nameList: Array<string>, compIndex: number, sizeLabel: string) {
+    /* @ts-ignore */
     var dialog = new Window("dialog", "Choose new name for comp #" + compIndex + " (" + sizeLabel + ")");
+    /* @ts-ignore */
     dialog.orientation = "column";
+    /* @ts-ignore */
     dialog.alignChildren = ["fill", "top"];
+    /* @ts-ignore */
     dialog.margins = 15;
+    /* @ts-ignore */
     dialog.preferredSize = [350, 150];
 
+    /* @ts-ignore */
     var dropdown = dialog.add("dropdownlist", undefined, nameList);
     dropdown.selection = 0;
 
+    /* @ts-ignore */
     var btnGroup = dialog.add("group");
     btnGroup.alignment = "right";
     btnGroup.add("button", undefined, "OK", {name: "ok"});
@@ -85,7 +93,7 @@ export const renameCompositions = () => {
 
   var compsToRename: Array<CompItem> = [];
   for (var j = 1; j <= targetFolder.numItems; j++) {
-    var comp = targetFolder.item(j);
+    var comp = targetFolder.item(j) as AVItem;
     if (comp instanceof CompItem) {
       compsToRename.push(comp);
     }
@@ -107,7 +115,7 @@ export const renameCompositions = () => {
 
     if (!assignedNames[sizeKey]) assignedNames[sizeKey] = [];
 
-    var namesLeft = [];
+    var namesLeft: Array<string> = [];
     var i = 0;
     while (i < availableNames.length) {
       var n = availableNames[i];
