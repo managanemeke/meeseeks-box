@@ -3,6 +3,7 @@ import {
   printLayersOfActiveComp,
   saveShrubs,
   test,
+  setEnabledToAllLayersWithLabel,
 } from "../../shared/aeft";
 import {ColorOption} from "../index";
 import {CirclePicker, ColorResult} from "react-color";
@@ -76,14 +77,14 @@ const Component = () => {
       />
       <Button
         onClick={async () => {
-          alert("disable" + " " + selectedColorValue);
+          await setEnabledToAllLayersWithLabel(selectedColorValue, false);
         }}
       >
         Disable
       </Button>
       <Button
         onClick={async () => {
-          alert("enable" + " " + selectedColorValue);
+          await setEnabledToAllLayersWithLabel(selectedColorValue, true);
         }}
       >
         Enable

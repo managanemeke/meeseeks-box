@@ -6,3 +6,4 @@ export {placeSaveMarkers} from "./placeSaveMarkers";
 export {deleteSaveMarkers} from "./deleteSaveMarkers";
 export {renameCompositions} from "./renameCompositions";
 export {printLayersOfActiveComp} from "./printLayersOfActiveComp";
+export {setEnabledToAllLayersWithLabel} from "./setEnabledToAllLayersWithLabel";

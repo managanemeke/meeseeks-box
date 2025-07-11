@@ -31,3 +31,10 @@ export const renameCompositions = async (): Promise<void> => {
 export const saveShrubs = async (): Promise<void> => {
   await evalES("saveShrubs()");
 };
+
+export const setEnabledToAllLayersWithLabel = async (
+  label: number,
+  enabled: boolean,
+): Promise<void> => {
+  await evalES(`setEnabledToAllLayersWithLabel(${label}, ${enabled})`);
+};
