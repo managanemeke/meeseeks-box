@@ -8,6 +8,7 @@ import {ColorOption, ColorPicker} from "../index";
 import {CirclePicker} from "react-color";
 import {getLabelColors, getLabelNames} from "../../../lib/utils/aeft";
 import _, {padStart} from "lodash";
+import {Button} from "react-aria-components";
 
 const Component = () => {
   const labels = (): Record<number, ColorOption> => {
@@ -26,7 +27,13 @@ const Component = () => {
   const colors = _.values(getLabelColors());
   const colorOptions = labels();
   return (
-    <>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "8px",
+      }}
+    >
       <button
         onClick={async (event) => {
           await test();
@@ -53,13 +60,20 @@ const Component = () => {
       <ColorPicker
         options={colorOptions}
       />
+      Layers with label
       <CirclePicker
         width={"180px"}
         color={colors[0]}
         colors={colors}
         onChangeComplete={(color) => alert(color.hex)}
       />
-    </>
+      <Button>
+        Disable
+      </Button>
+      <Button>
+        Enable
+      </Button>
+    </div>
   );
 };
 
