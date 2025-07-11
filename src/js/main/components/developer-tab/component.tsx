@@ -5,10 +5,11 @@ import {
   test,
 } from "../../shared/aeft";
 import {ColorOption, ColorPicker} from "../index";
-import {CirclePicker} from "react-color";
+import {CirclePicker, ColorResult} from "react-color";
 import {getLabelColors, getLabelNames} from "../../../lib/utils/aeft";
 import _, {padStart} from "lodash";
 import {Button} from "react-aria-components";
+import {useState} from "react";
 
 const Component = () => {
   const labels = (): Record<number, ColorOption> => {
@@ -26,6 +27,7 @@ const Component = () => {
   };
   const colors = _.values(getLabelColors());
   const colorOptions = labels();
+  const [selectedColor, setSelectedColor] = useState<string>(colors[0]);
   return (
     <div
       style={{
@@ -63,9 +65,12 @@ const Component = () => {
       Layers with label
       <CirclePicker
         width={"180px"}
-        color={colors[0]}
+        color={selectedColor}
         colors={colors}
-        onChangeComplete={(color) => alert(color.hex)}
+        onChangeComplete={(color: ColorResult) => {
+          setSelectedColor(color.hex);
+          alert(selectedColor);
+        }}
       />
       <Button>
         Disable
