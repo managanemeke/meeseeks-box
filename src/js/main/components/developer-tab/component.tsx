@@ -80,14 +80,14 @@ const Component = () => {
           await setEnabledToAllLayersWithLabel(selectedColorValue, false);
         }}
       >
-        Disable
+        disable!
       </Button>
       <Button
         onClick={async () => {
           await setEnabledToAllLayersWithLabel(selectedColorValue, true);
         }}
       >
-        Enable
+        enable!
       </Button>
     </div>
   );
