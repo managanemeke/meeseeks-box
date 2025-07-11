@@ -5,7 +5,7 @@ export const placeSaveMarkers = () => {
 
     function main() {
         if (!app.project) {
-            alert("Нет открытого проекта!", "Ошибка");
+            alert("Project has not been saved!", "Error");
             return;
         }
         const timestamp = promptForTimestamp();
@@ -17,12 +17,12 @@ export const placeSaveMarkers = () => {
 
     function promptForTimestamp() {
         /* @ts-ignore */
-        const dialog = new Window("dialog", "Расставить маркеры сохранения");
+        const dialog = new Window("dialog", "Place save markers");
 
         /* @ts-ignore */
         const timestampGroup = dialog.add("group");
         timestampGroup.alignChildren = ["left", "center"];
-        timestampGroup.add("statictext", undefined, "Временная метка (ЧЧ:ММ:СС:КК):");
+        timestampGroup.add("statictext", undefined, "Timestamp (hh:mm:ss:ff):");
 
         const selectedTimestamp = timestampGroup.add("edittext", undefined, defaultTime);
         selectedTimestamp.characters = 11;

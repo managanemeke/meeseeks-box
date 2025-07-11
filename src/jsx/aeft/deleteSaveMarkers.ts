@@ -3,7 +3,7 @@ export const deleteSaveMarkers = () => {
 
     function deleteSaveMarkers() {
         if (!app.project) {
-            alert("Нет открытого проекта!", "Ошибка");
+            alert("Project has not been saved!", "Error");
             return;
         }
         const project = app.project;
@@ -22,6 +22,6 @@ export const deleteSaveMarkers = () => {
                 }
             }
         }
-        alert("Удалено маркеров: " + deletedMarkersCount, "Готово");
+        alert("Markers deleted: " + deletedMarkersCount, "Ready");
     }
 };

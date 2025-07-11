@@ -75,12 +75,12 @@ export const saveSubstrates = () => {
         tempComp.remove();
         
         if (templates.length === 0) {
-            alert("Нет доступных шаблонов Output Module.\nСоздайте их через Edit > Templates > Output Module");
+            alert("There are none Output Modules!\nCreate them via Edit > Templates > Output Module");
             return "";
         }
 
         /* @ts-ignore */
-        const dialog = new Window("dialog", "Выберите Output Module Template");
+        const dialog = new Window("dialog", "Select Output Module Template");
 
         /* @ts-ignore */
         const dropdownListGroup = dialog.add("group");
@@ -113,7 +113,7 @@ export const saveSubstrates = () => {
     function activeComp() {
         const comp = app.project.activeItem;
         if (!comp || !(comp instanceof CompItem)) {
-            alert("Нет активной композиции!");
+            alert("The is no active composition!");
             return null;
         }
         return comp;
