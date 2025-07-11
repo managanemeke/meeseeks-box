@@ -212,7 +212,7 @@ export const getLabelColors = (): Record<string, string> => {
       const match = line.match(regex);
       if (match) {
         const id = parseInt(match[1]);
-        colorNames[id] = "#" + normalizeColor(match[2]);
+        colorNames[id] = "#" + normalizeColor(match[2]).toLowerCase();
       }
     });
 

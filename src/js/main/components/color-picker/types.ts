@@ -1,5 +1,5 @@
 export type ColorOption = {
   label: string;
-  value: string;
+  value: number;
   color: string;
 }

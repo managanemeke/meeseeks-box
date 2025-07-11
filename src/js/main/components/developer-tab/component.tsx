@@ -4,7 +4,7 @@ import {
   saveShrubs,
   test,
 } from "../../shared/aeft";
-import {ColorOption, ColorPicker} from "../index";
+import {ColorOption} from "../index";
 import {CirclePicker, ColorResult} from "react-color";
 import {getLabelColors, getLabelNames} from "../../../lib/utils/aeft";
 import _, {padStart} from "lodash";
@@ -12,22 +12,25 @@ import {Button} from "react-aria-components";
 import {useState} from "react";
 
 const Component = () => {
-  const labels = (): Record<number, ColorOption> => {
+  const labels = (): Record<string, ColorOption> => {
     const names = getLabelNames();
     const colors = getLabelColors();
-    const options: Record<number, ColorOption> = {};
+    const options: Record<string, ColorOption> = {};
     _.forEach(names, (value, key) => {
-      options[Number(key)] = {
-        color: colors[key],
+      let hex = colors[key];
+      options[hex] = {
+        color: hex,
         label: padStart(key, 2, "0") + ": " + value,
-        value: key,
+        value: Number(key),
       };
     });
     return options;
   };
   const colors = _.values(getLabelColors());
   const colorOptions = labels();
-  const [selectedColor, setSelectedColor] = useState<string>(colors[0]);
+  const firstColor = colors[0];
+  const [selectedColor, setSelectedColor] = useState<string>(firstColor);
+  const [selectedColorValue, setSelectedColorValue] = useState<number>(colorOptions[firstColor].value);
   return (
     <div
       style={{
@@ -59,23 +62,30 @@ const Component = () => {
       >
         saveShrubs
       </button>
-      <ColorPicker
-        options={colorOptions}
-      />
       Layers with label
       <CirclePicker
         width={"180px"}
         color={selectedColor}
         colors={colors}
         onChangeComplete={(color: ColorResult) => {
-          setSelectedColor(color.hex);
-          alert(selectedColor);
+          const hex = color.hex;
+          const value = colorOptions[hex].value;
+          setSelectedColor(hex);
+          setSelectedColorValue(value);
         }}
       />
-      <Button>
+      <Button
+        onClick={async () => {
+          alert("disable" + " " + selectedColorValue);
+        }}
+      >
         Disable
       </Button>
-      <Button>
+      <Button
+        onClick={async () => {
+          alert("enable" + " " + selectedColorValue);
+        }}
+      >
         Enable
       </Button>
     </div>
