@@ -7,7 +7,13 @@ import {
 
 const Component = () => {
   return (
-    <>
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        gap: "8px",
+      }}
+    >
       <button
         onClick={async () => {
           await placeSaveMarkers();
@@ -36,7 +42,7 @@ const Component = () => {
       >
         renameCompositions
       </button>
-    </>
+    </div>
   );
 };
 
