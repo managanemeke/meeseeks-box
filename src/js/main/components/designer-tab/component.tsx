@@ -4,6 +4,7 @@ import {
   saveSubstrates,
   renameCompositions,
 } from "../../shared/aeft";
+import {VisibilityTool} from "../index";
 
 const Component = () => {
   return (
@@ -42,6 +43,7 @@ const Component = () => {
       >
         renameCompositions
       </button>
+      <VisibilityTool />
     </div>
   );
 };
