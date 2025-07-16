@@ -9,7 +9,7 @@ run powershell with admin rights...
 #### approve execute
 
 ```shell
-Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+Set-ExecutionPolicy Bypass -Force
 ```
 
 #### install 7z
@@ -21,17 +21,15 @@ winget install --id 7zip.7zip
 #### add 7z to path
 
 ```powershell
-setx /M path "%path%;C:\Program Files\7-Zip\"
+$oldPath = [Environment]::GetEnvironmentVariable('PATH', 'Machine')
+$newPath = $oldPath + ';' + 'C:\Program Files\7-Zip\'
+[Environment]::SetEnvironmentVariable('PATH', $newPath, 'Machine')
 ```
 
 #### install node
 
 ```powershell
-powershell -c "irm https://community.chocolatey.org/install.ps1|iex"
-```
-
-```shell
-choco install nodejs-lts --version="22"
+winget install --id=OpenJS.NodeJS -v "22.17.1" -e --source winget
 ```
 
 #### check dependencies
