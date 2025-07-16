@@ -42,6 +42,12 @@ node -v
 npm -v
 ```
 
+#### update npm to latest
+
+```shell
+npm install -g npm@latest
+```
+
 #### install node modules
 
 ```shell
