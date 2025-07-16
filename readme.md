@@ -34,12 +34,18 @@ powershell -c "irm https://community.chocolatey.org/install.ps1|iex"
 choco install nodejs-lts --version="22"
 ```
 
+#### check dependencies
+
 ```shell
 node -v
 ```
 
 ```shell
 npm -v
+```
+
+```powershell
+(7z | Select-String -Pattern "7-Zip (\d+\.\d+)").Matches.Groups[1].Value
 ```
 
 #### update npm to latest
@@ -56,7 +62,7 @@ npm install
 
 #### define cep directory path
 
-Set cep directory path inside scripts/extract-zxp-locally.ps1
+Set cep directory path inside [scripts/extract-zxp-locally.ps1](scripts/extract-zxp-locally.ps1)
 
 ```powershell
 $cepDirectory = "C:\Program Files\Adobe\Adobe After Effects 2025\Support Files\Plug-ins\CEP"
