@@ -3,6 +3,7 @@
 !/scripts/
 !/src/
 !/.env.prod.example
+!/.node-version
 !/cep.config.ts
 !/package.json
 !/package-lock.json

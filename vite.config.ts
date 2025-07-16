@@ -1,4 +1,4 @@
-import { defineConfig } from "vite";
+import { defineConfig, loadEnv } from "vite";
 import react from "@vitejs/plugin-react";
 
 import { cep, runAction } from "vite-cep-plugin";
@@ -15,15 +15,18 @@ const src = path.resolve(__dirname, "src");
 const root = path.resolve(src, "js");
 const outDir = path.resolve(__dirname, "dist", "cep");
 
-const debugReact = process.env.DEBUG_REACT === "true";
-const isProduction = process.env.NODE_ENV === "production";
-const isMetaPackage = process.env.ZIP_PACKAGE === "true";
-const isPackage = process.env.ZXP_PACKAGE === "true" || isMetaPackage;
-const isServe = process.env.SERVE_PANEL === "true";
-const action = process.env.ACTION;
+const env = loadEnv('', process.cwd(), '');
+
+const debugReact = env.DEBUG_REACT === "true";
+const isProduction = env.NODE_ENV === "production";
+const isMetaPackage = env.ZIP_PACKAGE === "true";
+const isPackage = env.ZXP_PACKAGE === "true" || isMetaPackage;
+const isServe = env.SERVE_PANEL === "true";
+const action = env.ACTION;
 
 let input = {};
 cepConfig.panels.map((panel) => {
+  /* @ts-ignore */
   input[panel.name] = path.resolve(root, panel.mainPath);
 });
 
