@@ -28,6 +28,10 @@ export const renameCompositions = async (): Promise<void> => {
   await evalES("renameCompositions()");
 };
 
+export const autoResizeCompositions = async (): Promise<void> => {
+  await evalES("autoResizeCompositions()");
+};
+
 export const saveShrubs = async (): Promise<void> => {
   await evalES("saveShrubs()");
 };

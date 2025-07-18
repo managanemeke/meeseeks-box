@@ -3,6 +3,7 @@ import {
   placeSaveMarkers,
   saveSubstrates,
   renameCompositions,
+  autoResizeCompositions,
 } from "../../shared/aeft";
 import {VisibilityTool} from "../index";
 
@@ -42,6 +43,13 @@ const Component = () => {
         }}
       >
         renameCompositions
+      </button>
+      <button
+        onClick={async () => {
+          await autoResizeCompositions();
+        }}
+      >
+        autoResizeCompositions
       </button>
       <VisibilityTool />
     </div>

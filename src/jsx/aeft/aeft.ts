@@ -5,5 +5,6 @@ export {saveSubstrates} from "./saveSubstrates";
 export {placeSaveMarkers} from "./placeSaveMarkers";
 export {deleteSaveMarkers} from "./deleteSaveMarkers";
 export {renameCompositions} from "./renameCompositions";
+export {autoResizeCompositions} from "./autoResizeCompositions";
 export {printLayersOfActiveComp} from "./printLayersOfActiveComp";
 export {setEnabledToAllLayersWithLabel} from "./setEnabledToAllLayersWithLabel";
