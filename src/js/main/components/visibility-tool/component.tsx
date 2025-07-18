@@ -3,7 +3,7 @@ import {
 } from "../../shared/aeft";
 import {CirclePicker, ColorResult} from "react-color";
 import {Button} from "react-aria-components";
-import {ColorOption} from "../color-picker/types";
+import {ColorOption} from "./types";
 import {getLabelColors, getLabelNames} from "../../../lib/utils/aeft";
 import _, {padStart} from "lodash";
 import {useState} from "react";
