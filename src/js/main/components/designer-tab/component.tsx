@@ -4,6 +4,7 @@ import {
   saveSubstrates,
   renameCompositions,
   autoResizeCompositions,
+  placeMeasureArea,
 } from "../../shared/aeft";
 import {VisibilityTool} from "../index";
 
@@ -50,6 +51,13 @@ const Component = () => {
         }}
       >
         autoResizeCompositions
+      </button>
+      <button
+        onClick={async () => {
+          await placeMeasureArea();
+        }}
+      >
+        placeMeasureArea
       </button>
       <VisibilityTool />
     </div>

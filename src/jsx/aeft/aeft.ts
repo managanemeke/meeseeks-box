@@ -2,6 +2,7 @@ export {test} from "./test";
 export {notify} from "./notify";
 export {saveShrubs} from "./saveShrubs";
 export {saveSubstrates} from "./saveSubstrates";
+export {placeMeasureArea} from "./placeMeasureArea";
 export {placeSaveMarkers} from "./placeSaveMarkers";
 export {deleteSaveMarkers} from "./deleteSaveMarkers";
 export {renameCompositions} from "./renameCompositions";

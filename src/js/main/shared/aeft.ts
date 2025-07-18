@@ -32,6 +32,10 @@ export const autoResizeCompositions = async (): Promise<void> => {
   await evalES("autoResizeCompositions()");
 };
 
+export const placeMeasureArea = async (): Promise<void> => {
+  await evalES("placeMeasureArea()");
+};
+
 export const saveShrubs = async (): Promise<void> => {
   await evalES("saveShrubs()");
 };
