@@ -28,11 +28,33 @@ const Component = () => {
   const firstColor = colors[0];
   const [selectedColor, setSelectedColor] = useState<string>(firstColor);
   const [selectedColorValue, setSelectedColorValue] = useState<number>(colorOptions[firstColor].value);
+  const base = 4;
+  const colorAmount = 16;
+  const columnsAmount = 4;
+  const rowsAmount = Math.ceil(colorAmount / columnsAmount);
+  const circleSize = 4 * base;
+  const circleSpacing = base;
+  const pickerWidth = circleSize * columnsAmount + circleSpacing * (columnsAmount + 1);
+  const pickerHeight = circleSize * rowsAmount + circleSpacing * (rowsAmount + 1);
   return (
     <>
       Layers with label
       <CirclePicker
-        width={"180px"}
+        styles={{
+          default: {
+            card: {
+              boxSizing: "border-box",
+              overflow: "hidden",
+              margin: 0,
+              paddingLeft: circleSpacing,
+              paddingTop: circleSpacing,
+              width: pickerWidth,
+              height: pickerHeight,
+            }
+          }
+        }}
+        circleSize={circleSize}
+        circleSpacing={circleSpacing}
         color={selectedColor}
         colors={colors}
         onChangeComplete={(color: ColorResult) => {
