@@ -27,8 +27,8 @@ const config: CEP_Config = {
     "--allow-file-access",
     "--allow-file-access-from-files",
   ],
-  width: 500,
-  height: 550,
+  width: 304,
+  height: 320,
 
   panels: [
     {
@@ -36,8 +36,8 @@ const config: CEP_Config = {
       name: "main",
       panelDisplayName: "Meeseeks Box",
       autoVisible: true,
-      width: 600,
-      height: 650,
+      width: 304,
+      height: 320,
     },
 
   ],
