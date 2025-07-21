@@ -222,3 +222,5 @@ export const getLabelColors = (): Record<string, string> => {
     return {};
   }
 };
+
+export {cloneStructuresRepository} from './cloneStructuresRepository';

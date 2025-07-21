@@ -1,4 +1,7 @@
-import {evalES} from "../../lib/utils/bolt";
+import {
+  evalES,
+  evalTS,
+} from "../../lib/utils/bolt";
 
 export const test = async (): Promise<void> => {
   await evalES("test()");
@@ -9,7 +12,7 @@ export const printLayersOfActiveComp = async (): Promise<void> => {
 };
 
 export const notify = async (text: string): Promise<void> => {
-  await evalES(`notify("${text}")`);
+  await evalTS("notify", text);
 };
 
 export const placeSaveMarkers = async (): Promise<void> => {

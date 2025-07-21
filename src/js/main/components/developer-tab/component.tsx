@@ -4,6 +4,9 @@ import {
   saveShrubs,
   test,
 } from "../../shared/aeft";
+import {
+  cloneStructuresRepository,
+} from "../../../lib/utils/aeft";
 
 const Component = () => {
   return (
@@ -36,6 +39,14 @@ const Component = () => {
         }}
       >
         saveShrubs
+      </button>
+      <button
+        onClick={async () => {
+          const result = cloneStructuresRepository();
+          await notify(JSON.stringify(result, null, 2));
+        }}
+      >
+        cloneStructuresRepository
       </button>
     </div>
   );

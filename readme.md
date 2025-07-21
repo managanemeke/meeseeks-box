@@ -26,6 +26,18 @@ run powershell with admin rights...
 Set-ExecutionPolicy Bypass -Force
 ```
 
+#### install bun
+
+```powershell
+winget install --id=Oven-sh.Bun --exact --source winget
+```
+
+#### install degit globally
+
+```powershell
+bun install --global degit
+```
+
 #### install 7z
 
 ```powershell
@@ -49,6 +61,14 @@ winget install --id=OpenJS.NodeJS -v "22.17.1" -e --source winget
 #### check dependencies
 
 ```shell
+bun --version
+```
+
+```shell
+bun run degit
+```
+
+```shell
 node -v
 ```
 
@@ -69,7 +89,7 @@ npm install -g npm@latest
 #### install node modules
 
 ```shell
-npm install
+npm install --legacy-peer-deps
 ```
 
 #### define cep directory path
