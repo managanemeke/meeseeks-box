@@ -2,6 +2,20 @@
 
 ## developer
 
+### clone
+
+```shell
+git clone --recursive git@github.com:managanemeke/meeseeks-box.git box
+```
+
+### update
+
+#### structures
+
+```shell
+git submodule update --init --remote --merge -- structures
+```
+
 ### configure
 
 run powershell with admin rights...
