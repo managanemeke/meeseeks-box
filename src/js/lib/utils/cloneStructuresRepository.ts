@@ -3,6 +3,7 @@ import {
   os,
   path,
 } from "../cep/node";
+import { GLOBAL_STRUCTURES_DIRECTORY } from "../config/paths";
 
 type CloneRepositoryResult = {
   directory: string,
@@ -21,14 +22,6 @@ type GithubRepositoryInstance = {
   repository: string,
   directory: string,
 }
-
-const GLOBAL_EXTENSION_DIRECTORY = path.join(
-  os.homedir(),
-  'AppData',
-  'Roaming',
-  'meeseeks-box',
-);
-const DEFAULT_STRUCTURES_DIRECTORY = path.join(GLOBAL_EXTENSION_DIRECTORY, 'structures');
 
 const cloneGithubRepositoryCommand = (instance: GithubRepositoryInstance): string => {
   const { user, repository, directory } = instance;
@@ -60,7 +53,7 @@ const executeCommand = (command: string): ExecuteCommandResult => {
 };
 
 export const cloneStructuresRepository = (
-  directory: string = DEFAULT_STRUCTURES_DIRECTORY,
+  directory: string = GLOBAL_STRUCTURES_DIRECTORY,
 ): CloneRepositoryResult => {
   const command = powershellCommand(
     cloneGithubRepositoryCommand({
