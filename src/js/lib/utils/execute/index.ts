@@ -8,6 +8,7 @@ export type CommandResult = {
   result: string,
 };
 
+export { run as bunRun } from "./bun";
 export { command as powershellCommand } from "./powershell";
 
 export const command = (command: string): CommandResult => {

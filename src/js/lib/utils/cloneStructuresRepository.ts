@@ -2,6 +2,7 @@ import {
   GLOBAL_STRUCTURES_DIRECTORY,
 } from "../config/paths";
 import {
+  bunRun,
   command,
   CommandResult,
   powershellCommand,
@@ -21,7 +22,7 @@ type GithubRepositoryInstance = {
 
 const cloneGithubRepositoryCommand = (instance: GithubRepositoryInstance): string => {
   const { user, repository, directory } = instance;
-  return `bun run degit --force ${user}/${repository} ${directory}`;
+  return bunRun(`degit --force ${user}/${repository} ${directory}`);
 };
 
 export const cloneStructuresRepository = (
