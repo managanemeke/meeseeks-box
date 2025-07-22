@@ -1,17 +1,18 @@
-const GLOBAL_STRUCTURES_FILE = "~\\AppData\\Roaming\\meeseeks-box\\structures\\structures.csv";
+import {
+  APPLICATION_STRUCTURES_CSV,
+} from "../lib/config";
 
 const structuresFile = (): File | null => {
-  alert(GLOBAL_STRUCTURES_FILE);
-  const globalStructuresFile = new File(GLOBAL_STRUCTURES_FILE);
-  if (globalStructuresFile.open("r")) {
-    return globalStructuresFile;
+  const applicationStructuresFile = new File(APPLICATION_STRUCTURES_CSV);
+  if (applicationStructuresFile.open("r")) {
+    return applicationStructuresFile;
   }
-  const localStructuresFile: File = File.openDialog("Select structures csv", "*.csv") as File;
+  const customStructuresFile: File = File.openDialog("Select structures csv", "*.csv") as File;
   if (
-    localStructuresFile
-    && localStructuresFile.open("r")
+    customStructuresFile
+    && customStructuresFile.open("r")
   ) {
-    return localStructuresFile;
+    return customStructuresFile;
   }
   return null;
 };

@@ -43,7 +43,7 @@ const Component = () => {
       </button>
       <button
         onClick={async () => {
-          const result = cloneStructuresRepository();
+          const result = await cloneStructuresRepository();
           await notify(JSON.stringify(result, null, 2));
         }}
       >
@@ -51,7 +51,7 @@ const Component = () => {
       </button>
       <button
         onClick={async () => {
-          const result = cloneReonRepository();
+          const result = await cloneReonRepository();
           await notify(JSON.stringify(result, null, 2));
         }}
       >

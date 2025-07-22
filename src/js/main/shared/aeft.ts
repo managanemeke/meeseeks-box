@@ -15,6 +15,10 @@ export const notify = async (text: string): Promise<void> => {
   await evalTS("notify", text);
 };
 
+export const getProject = async (): Promise<string> => {
+  return await evalTS("getProject");
+};
+
 export const placeSaveMarkers = async (): Promise<void> => {
   await evalES("placeSaveMarkers()");
 };

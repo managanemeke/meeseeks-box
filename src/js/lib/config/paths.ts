@@ -1,21 +1,73 @@
 import {
-  os,
-  path,
-} from "../cep/node";
+  APPLICATION_STRUCTURES,
+  APPLICATION_REON,
+  PROJECT_STRUCTURES,
+  PROJECT_REON,
+  BACKSLASH,
+  MACHINE,
+  SLASH,
+  PROJECT,
+} from "../../../shared/lib/config";
+import {
+  execute,
+  powershellCommand,
+} from "../utils/execute";
+import {
+  getProject,
+} from "../../main/shared/aeft";
 
-const GLOBAL_EXTENSION_DIRECTORY = path.join(
-  os.homedir(),
-  'AppData',
-  'Roaming',
-  'meeseeks-box',
-);
+export const usePaths = async () => {
+  const platform = process.platform;
+  const programData: string | null = (() => {
+    try {
+      const result = execute(
+        powershellCommand(
+          `echo "$env:PROGRAMDATA"`
+        )
+      );
+      if (
+        result.success
+        && result.result !== ""
+      ) {
+        return result.result;
+      }
+    } catch (error) {
+    }
+    return null;
+  })();
 
-export const GLOBAL_STRUCTURES_DIRECTORY = path.join(
-  GLOBAL_EXTENSION_DIRECTORY,
-  'structures',
-);
+  const machine = ((): string => {
+    if (
+      platform === "win32"
+      && programData
+    ) {
+      return programData.replaceAll(BACKSLASH, SLASH);
+    }
+    return "/opt";
+  })();
+  const project = await getProject();
 
-export const GLOBAL_REON_DIRECTORY = path.join(
-  GLOBAL_EXTENSION_DIRECTORY,
-  'reon',
-);
+  const prepare = (path: string) => {
+    if (
+      (
+        path.includes(MACHINE)
+        && machine === ""
+      ) || (
+        path.includes(PROJECT)
+        && project === ""
+      )
+    ) {
+      return "";
+    }
+    return path
+      .replace(MACHINE, machine)
+      .replace(PROJECT, project);
+  };
+
+  return {
+    APPLICATION_STRUCTURES: prepare(APPLICATION_STRUCTURES),
+    APPLICATION_REON: prepare(APPLICATION_REON),
+    PROJECT_STRUCTURES: prepare(PROJECT_STRUCTURES),
+    PROJECT_REON: prepare(PROJECT_REON),
+  };
+};

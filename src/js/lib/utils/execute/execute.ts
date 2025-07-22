@@ -21,7 +21,7 @@ export const execute = (
       stdio: 'pipe',
       cwd: process.cwd(),
       encoding: 'utf-8',
-    });
+    }).trim();
     result.success = true;
   } catch (error) {
     /* @ts-ignore */
