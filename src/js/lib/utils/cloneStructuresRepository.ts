@@ -4,7 +4,7 @@ import {
 import {
   bunRun,
   degitGithubRepository,
-  command,
+  execute,
   CommandResult,
   powershellCommand,
 } from "./execute";
@@ -19,7 +19,7 @@ export const cloneStructuresRepository = (
   directory: string = GLOBAL_STRUCTURES_DIRECTORY,
 ): CloneRepositoryResult => {
   const commandResult =
-    command(
+    execute(
       powershellCommand(
         bunRun(
           degitGithubRepository({

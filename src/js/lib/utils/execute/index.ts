@@ -12,7 +12,7 @@ export { run as bunRun } from "./bun";
 export { command as powershellCommand } from "./powershell";
 export { githubRepository as degitGithubRepository } from "./degit";
 
-export const command = (command: string): CommandResult => {
+export const execute = (command: string): CommandResult => {
   const result = {
     command: command,
     success: false,
