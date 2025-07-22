@@ -14,3 +14,8 @@ export const GLOBAL_STRUCTURES_DIRECTORY = path.join(
   GLOBAL_EXTENSION_DIRECTORY,
   'structures',
 );
+
+export const GLOBAL_REON_DIRECTORY = path.join(
+  GLOBAL_EXTENSION_DIRECTORY,
+  'reon',
+);

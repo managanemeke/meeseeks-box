@@ -223,4 +223,5 @@ export const getLabelColors = (): Record<string, string> => {
   }
 };
 
+export {cloneReonRepository} from './cloneReonRepository';
 export {cloneStructuresRepository} from './cloneStructuresRepository';

@@ -5,6 +5,7 @@ import {
   test,
 } from "../../shared/aeft";
 import {
+  cloneReonRepository,
   cloneStructuresRepository,
 } from "../../../lib/utils/aeft";
 
@@ -47,6 +48,14 @@ const Component = () => {
         }}
       >
         cloneStructuresRepository
+      </button>
+      <button
+        onClick={async () => {
+          const result = cloneReonRepository();
+          await notify(JSON.stringify(result, null, 2));
+        }}
+      >
+        cloneReonRepository
       </button>
     </div>
   );
