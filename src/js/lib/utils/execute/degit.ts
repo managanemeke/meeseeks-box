@@ -1,6 +1,9 @@
 import {
   bunRun,
-  CommandResult, degitGithubRepository, execute, powershellCommand,
+  CommandResult,
+  degitGithubRepository,
+  execute,
+  powershellCommand,
 } from "./index";
 
 export type GithubRepositoryInstance = {
@@ -38,6 +41,6 @@ export const cloneGithubRepository = (
   return {
     directory: instance.directory,
     success: commandResult.success,
-    command: commandResult
+    command: commandResult,
   };
 };
