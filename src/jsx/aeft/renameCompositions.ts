@@ -1,3 +1,21 @@
+const GLOBAL_STRUCTURES_FILE = "~\\AppData\\Roaming\\meeseeks-box\\structures\\structures.csv";
+
+const structuresFile = (): File | null => {
+  alert(GLOBAL_STRUCTURES_FILE);
+  const globalStructuresFile = new File(GLOBAL_STRUCTURES_FILE);
+  if (globalStructuresFile.open("r")) {
+    return globalStructuresFile;
+  }
+  const localStructuresFile: File = File.openDialog("Select structures csv", "*.csv") as File;
+  if (
+    localStructuresFile
+    && localStructuresFile.open("r")
+  ) {
+    return localStructuresFile;
+  }
+  return null;
+};
+
 export const renameCompositions = () => {
   const COLUMN_SEPARATOR = ";";
 
@@ -7,37 +25,30 @@ export const renameCompositions = () => {
     return;
   }
 
-  /* @ts-ignore */
-  var csvFile = File.openDialog("Select CSV with name,width,height", "*.csv");
+  const csvFile = structuresFile();
   if (!csvFile) {
-    alert("No file selected.");
+    alert("Failed to open structures file.");
     return;
   }
 
-  /* @ts-ignore */
-  if (!csvFile.open("r")) {
-    alert("Failed to open file.");
-    return;
-  }
-
-  /* @ts-ignore */
-  var csvContent = csvFile.read();
-  /* @ts-ignore */
+  const csvContent = csvFile.read();
   csvFile.close();
 
+  /* @ts-ignore */
   var lines = csvContent.split(/\r?\n/);
   var sizeToNames: Record<string, Array<string>> = {};
 
-  for (var i = 1; i < lines.length; i++) {
-    var line = lines[i].trim();
+  for (let i = 1; i < lines.length; i++) {
+    const line = lines[i];
     if (!line) continue;
 
+    /* @ts-ignore */
     var parts = line.split(COLUMN_SEPARATOR);
     if (parts.length < 3) continue;
 
-    var name = parts[0].trim();
-    var width = parseInt(parts[1].trim(), 10);
-    var height = parseInt(parts[2].trim(), 10);
+    var name = parts[0];
+    var width = parseInt(parts[1], 10);
+    var height = parseInt(parts[2], 10);
     if (isNaN(width) || isNaN(height)) continue;
 
     var key: string = width + "x" + height;
