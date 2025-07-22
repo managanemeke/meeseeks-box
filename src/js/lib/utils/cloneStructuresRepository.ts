@@ -3,6 +3,7 @@ import {
 } from "../config/paths";
 import {
   bunRun,
+  degitGithubRepository,
   command,
   CommandResult,
   powershellCommand,
@@ -14,28 +15,19 @@ type CloneRepositoryResult = {
   command: CommandResult,
 };
 
-type GithubRepositoryInstance = {
-  user: string,
-  repository: string,
-  directory: string,
-}
-
-const cloneGithubRepositoryCommand = (instance: GithubRepositoryInstance): string => {
-  const { user, repository, directory } = instance;
-  return bunRun(`degit --force ${user}/${repository} ${directory}`);
-};
-
 export const cloneStructuresRepository = (
   directory: string = GLOBAL_STRUCTURES_DIRECTORY,
 ): CloneRepositoryResult => {
   const commandResult =
     command(
       powershellCommand(
-        cloneGithubRepositoryCommand({
-          user: 'managanemeke',
-          repository: 'meeseeks-box-structures',
-          directory: directory,
-        })
+        bunRun(
+          degitGithubRepository({
+            user: 'managanemeke',
+            repository: 'meeseeks-box-structures',
+            directory: directory,
+          })
+        )
       )
     );
   return {

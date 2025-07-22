@@ -10,6 +10,7 @@ export type CommandResult = {
 
 export { run as bunRun } from "./bun";
 export { command as powershellCommand } from "./powershell";
+export { githubRepository as degitGithubRepository } from "./degit";
 
 export const command = (command: string): CommandResult => {
   const result = {
