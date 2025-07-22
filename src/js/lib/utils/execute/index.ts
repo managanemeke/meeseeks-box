@@ -5,11 +5,13 @@ export {
   command as powershellCommand,
 } from "./powershell";
 export {
-  type CloneRepositoryResult,
   type GithubRepositoryInstance,
   githubRepository as degitGithubRepository,
-  cloneGithubRepository as degitCloneGithubRepository,
 } from "./degit";
+export {
+  type CloneRepositoryResult,
+  cloneGithubRepository as degitCloneGithubRepository,
+} from "./cloneGithubRepository";
 export {
   type CommandResult,
   execute,
