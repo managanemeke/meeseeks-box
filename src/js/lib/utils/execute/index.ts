@@ -8,9 +8,17 @@ export type CommandResult = {
   result: string,
 };
 
+export type {
+  CloneRepositoryResult,
+  GithubRepositoryInstance,
+} from "./degit";
+
 export { run as bunRun } from "./bun";
 export { command as powershellCommand } from "./powershell";
-export { githubRepository as degitGithubRepository } from "./degit";
+export {
+  githubRepository as degitGithubRepository,
+  cloneGithubRepository as degitCloneGithubRepository,
+} from "./degit";
 
 export const execute = (command: string): CommandResult => {
   const result = {
