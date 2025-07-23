@@ -7,6 +7,9 @@ import {
 import {
     PROJECT_REON_SHRUBS,
 } from "../lib/config";
+import {
+    SHRUBS,
+} from "../../shared/lib/config";
 
 export const saveShrubs = () => {
     const projectItems = app.project.items;
@@ -21,7 +24,10 @@ export const saveShrubs = () => {
 
     for (let i = 1; i <= projectItems.length; i++) {
         const comp = projectItems[i];
-        if (comp instanceof CompItem) {
+        if (
+          comp instanceof CompItem
+          && comp.parentFolder.name.toLowerCase() === SHRUBS
+        ) {
             let shrubCss = "";
             shrubCss += saveCompositionAsCss(comp);
             for (let j = 1; j <= comp.numLayers; j++) {
