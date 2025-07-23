@@ -23,7 +23,6 @@ export const cloneStructuresRepository = async (
   ) {
     directory = APPLICATION_STRUCTURES;
   }
-  alert(directory);
   if (!directory) {
     throw new Error("error");
   }
