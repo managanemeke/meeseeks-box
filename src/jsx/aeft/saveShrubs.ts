@@ -4,6 +4,11 @@ import {
     aeftLayerType,
     compositionName,
 } from "./aeft-utils";
+import {
+    SLASH,
+    REON,
+    SHRUBS,
+} from "../../shared/lib/config";
 
 export const saveShrubs = () => {
     const projectItems = app.project.items;
@@ -16,7 +21,7 @@ export const saveShrubs = () => {
 
     /* @ts-ignore */
     const rootDirectory = app.project.file.parent;
-    const shrubsDirectory = rootDirectory.fsName + "/" + "shrubs";
+    const shrubsDirectory = rootDirectory.fsName + SLASH + REON + SLASH + SHRUBS;
 
     for (let i = 1; i <= projectItems.length; i++) {
         const comp = projectItems[i];

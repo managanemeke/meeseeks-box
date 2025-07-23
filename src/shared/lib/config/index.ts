@@ -6,6 +6,7 @@ export {
   MEESEEKS_BOX,
   REON,
   STRUCTURES,
+  SHRUBS,
 } from "./directories";
 export {
   STRUCTURES_CSV,
