@@ -3,6 +3,7 @@ import {
   APPLICATION_REON,
   PROJECT_STRUCTURES,
   PROJECT_REON,
+  PROJECT_REON_SHRUBS,
   BACKSLASH,
   MACHINE,
   SLASH,
@@ -51,10 +52,10 @@ export const usePaths = async () => {
     if (
       (
         path.includes(MACHINE)
-        && machine === ""
+        && !machine
       ) || (
         path.includes(PROJECT)
-        && project === ""
+        && !project
       )
     ) {
       return "";
@@ -69,5 +70,6 @@ export const usePaths = async () => {
     APPLICATION_REON: prepare(APPLICATION_REON),
     PROJECT_STRUCTURES: prepare(PROJECT_STRUCTURES),
     PROJECT_REON: prepare(PROJECT_REON),
+    PROJECT_REON_SHRUBS: prepare(PROJECT_REON_SHRUBS),
   };
 };

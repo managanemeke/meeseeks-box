@@ -6,6 +6,7 @@ import {
 } from "../../shared/aeft";
 import {
   cloneReonRepository,
+  clearShrubsDirectory,
   cloneStructuresRepository,
 } from "../../../lib/utils/aeft";
 
@@ -36,6 +37,7 @@ const Component = () => {
       </button>
       <button
         onClick={async () => {
+          await clearShrubsDirectory();
           await saveShrubs();
         }}
       >

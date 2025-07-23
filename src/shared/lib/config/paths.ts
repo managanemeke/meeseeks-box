@@ -3,10 +3,13 @@ import {
   REON,
   SLASH,
   STRUCTURES,
-  STRUCTURES_CSV,
   MACHINE,
   MEESEEKS_BOX,
-} from "./index";
+  SHRUBS,
+} from "./directories";
+import {
+  STRUCTURES_CSV,
+} from "./files";
 
 export const APPLICATION = MACHINE + SLASH + MEESEEKS_BOX;
 
@@ -15,6 +18,7 @@ export const APPLICATION_REON = APPLICATION + SLASH + REON;
 
 export const PROJECT_STRUCTURES = PROJECT + SLASH + STRUCTURES;
 export const PROJECT_REON = PROJECT + SLASH + REON;
+export const PROJECT_REON_SHRUBS = PROJECT + SLASH + REON + SLASH + SHRUBS;
 
 export const APPLICATION_STRUCTURES_CSV = APPLICATION_STRUCTURES + SLASH + STRUCTURES_CSV;
 

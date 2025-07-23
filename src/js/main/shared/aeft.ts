@@ -44,7 +44,7 @@ export const placeMeasureArea = async (): Promise<void> => {
 };
 
 export const saveShrubs = async (): Promise<void> => {
-  await evalES("saveShrubs()");
+  await evalTS("saveShrubs");
 };
 
 export const setEnabledToAllLayersWithLabel = async (

@@ -5,10 +5,8 @@ import {
     compositionName,
 } from "./aeft-utils";
 import {
-    SLASH,
-    REON,
-    SHRUBS,
-} from "../../shared/lib/config";
+    PROJECT_REON_SHRUBS,
+} from "../lib/config";
 
 export const saveShrubs = () => {
     const projectItems = app.project.items;
@@ -19,9 +17,7 @@ export const saveShrubs = () => {
         return;
     }
 
-    /* @ts-ignore */
-    const rootDirectory = app.project.file.parent;
-    const shrubsDirectory = rootDirectory.fsName + SLASH + REON + SLASH + SHRUBS;
+    const shrubsDirectory = PROJECT_REON_SHRUBS;
 
     for (let i = 1; i <= projectItems.length; i++) {
         const comp = projectItems[i];
