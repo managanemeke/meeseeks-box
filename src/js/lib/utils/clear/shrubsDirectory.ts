@@ -2,8 +2,8 @@ import {
   usePaths,
 } from "../../config";
 import {
-  clearDirectoryExclude,
-} from "./index";
+  directoryExclude as clearDirectoryExclude,
+} from "./directory";
 
 export const shrubsDirectory = async (): Promise<void> => {
   const { PROJECT_REON_SHRUBS } = await usePaths();
