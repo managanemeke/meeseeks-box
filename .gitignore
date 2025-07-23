@@ -9,6 +9,7 @@
 !/package.json
 !/package-lock.json
 !/readme.md
+!/todo.txt
 !/tsconfig.json
 !/tsconfig-build.json
 !/vite.config.ts
