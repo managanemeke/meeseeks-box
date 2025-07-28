@@ -9,4 +9,5 @@ export {deleteSaveMarkers} from "./deleteSaveMarkers";
 export {renameCompositions} from "./renameCompositions";
 export {autoResizeCompositions} from "./autoResizeCompositions";
 export {printLayersOfActiveComp} from "./printLayersOfActiveComp";
+export {resizeTextLayerToComposition} from "./resizeTextLayerToComposition";
 export {setEnabledToAllLayersWithLabel} from "./setEnabledToAllLayersWithLabel";

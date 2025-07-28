@@ -5,6 +5,7 @@ import {
   renameCompositions,
   autoResizeCompositions,
   placeMeasureArea,
+  resizeTextLayerToComposition,
 } from "../../shared/aeft";
 import {VisibilityTool} from "../index";
 
@@ -58,6 +59,13 @@ const Component = () => {
         }}
       >
         placeMeasureArea
+      </button>
+      <button
+        onClick={async () => {
+          await resizeTextLayerToComposition();
+        }}
+      >
+        resizeTextLayerToComposition
       </button>
       <VisibilityTool />
     </div>

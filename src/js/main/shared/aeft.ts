@@ -47,6 +47,10 @@ export const saveShrubs = async (): Promise<void> => {
   await evalTS("saveShrubs");
 };
 
+export const resizeTextLayerToComposition = async (): Promise<void> => {
+  await evalTS("resizeTextLayerToComposition");
+};
+
 export const setEnabledToAllLayersWithLabel = async (
   label: number,
   enabled: boolean,
