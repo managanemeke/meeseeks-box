@@ -2,7 +2,6 @@ import {notify} from "./notify";
 
 interface TextDocument {
   fontSize: number;
-  clone(): TextDocument;
 }
 
 export const resizeTextLayerToComposition = (
@@ -29,10 +28,6 @@ export const resizeTextLayerToComposition = (
   const textProperty = textLayer.property("ADBE Text Properties").property("ADBE Text Document") as Property;
   const sourceTextDocument = textProperty.value as TextDocument;
 
-  alert(String(sourceTextDocument.fontSize));
-
-  const tempTextDoc = sourceTextDocument.clone();
-
   const compWidth = comp.width;
   const compHeight = comp.height;
 
@@ -40,19 +35,14 @@ export const resizeTextLayerToComposition = (
   let maxSize = 2000;
   let bestFit = minSize;
 
-  alert(String(tempTextDoc.fontSize));
-
   while (maxSize - minSize > 0.5) {
-    alert("while");
     const testSize = (minSize + maxSize) / 2;
-    tempTextDoc.fontSize = testSize;
-    textProperty.setValue(tempTextDoc);
+    sourceTextDocument.fontSize = testSize;
+    textProperty.setValue(sourceTextDocument);
 
     const bounds = textLayer.sourceRectAtTime(comp.time, false);
     const textWidth = bounds.width;
     const textHeight = bounds.height;
-
-    notify(textWidth + "x" + textHeight);
 
     var fitsWidth = textWidth <= compWidth;
     var fitsHeight = textHeight <= compHeight;
@@ -75,10 +65,10 @@ export const resizeTextLayerToComposition = (
     }
   }
 
-  alert(String(bestFit));
-
-  tempTextDoc.fontSize = bestFit;
-  textProperty.setValue(tempTextDoc);
+  const base = 2;
+  bestFit = Math.floor(bestFit / base) * base;
+  sourceTextDocument.fontSize = bestFit;
+  textProperty.setValue(sourceTextDocument);
 
   app.endUndoGroup();
 };
