@@ -48,8 +48,8 @@ export const renameCompositions = () => {
     if (parts.length < 3) continue;
 
     var name = parts[0];
-    var width = parseInt(parts[1], 10);
-    var height = parseInt(parts[2], 10);
+    var width = parseInt(parts[2], 10);
+    var height = parseInt(parts[3], 10);
     if (isNaN(width) || isNaN(height)) continue;
 
     var key: string = width + "x" + height;
