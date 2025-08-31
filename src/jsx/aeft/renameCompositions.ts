@@ -18,7 +18,7 @@ const structuresFile = (): File | null => {
 };
 
 export const renameCompositions = () => {
-  const COLUMN_SEPARATOR = ";";
+  const COLUMN_SEPARATOR = ",";
 
   var proj = app.project;
   if (!proj) {
